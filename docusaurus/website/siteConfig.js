@@ -25,6 +25,9 @@ const siteConfig = {
   tagline: 'A website Documentation',
   url: 'http://covidcenter.github.io', // Your website URL
   baseUrl: '/docs/', // Base URL for your project */
+  docsUrl: '',
+  twitterUsername: "sukangwurr",
+  repoUrl: "https://github.com/imamaris/covidcenter-bot",
   // For github.io type URLs, you would set the url and baseUrl like:
   //   url: 'https://facebook.github.io',
   //   baseUrl: '/test-site/',
