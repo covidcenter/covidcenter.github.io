@@ -56,7 +56,7 @@
             });
         </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">covidcenter-bot-tutorial</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="overview"></a><a href="#overview" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h2>
 <p align="center">
-  <img src="./examples/test_messenger_covid.gif" width="40%">
+  <img src="./assets/test_messenger_covid.gif" width="40%">
 </p>
 <p>If you want to see docusaurus version, you could visit <a href="https://covidcenter.github.io/docs/">https://covidcenter.github.io/docs/</a></p>
 <p>In this tutorial, we will be creating an API-based bot that give information covid to your account. The app will be able to process the user's text and respond to the user data about covid that they want. The key things we will explore is how to:</p>
@@ -77,7 +77,7 @@
 <p>Ngrok is reverse proxy, it allow you deploy at local with random link.</p>
 <h2><a class="anchor" aria-hidden="true" id="design-the-user-interaction"></a><a href="#design-the-user-interaction" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Design the User Interaction</h2>
 <p>When designing applications with interactions, it's important to understand the various ways that a user may interact with your app. Some techniques that can help with modeling the conversation is writing a script or creating a flow diagram. For our covid app, let's write a script to outline it.</p>
-<p><img src="./examples/flow_new.png" alt="alt text" title="Cara Kerja Aplikasi"></p>
+<p><img src="./assets/flow_new.png" alt="alt text" title="Cara Kerja Aplikasi"></p>
 <p>Let's consider the following conversation as the happy path:</p>
 <pre><code class="hljs"><span class="hljs-attribute">User</span>: "Good morning, what is this bot for?"
 
@@ -137,7 +137,7 @@ We could give an example of this like sentiment on reaction_intent.</p>
 &quot;Superb&quot; (positive)</p>
 <p><strong>Utterances is sample data which define a sentence to be categorized to an intent and have entities and traits</strong>.
 This term will be used to train data, for example:</p>
-<p><img src="./examples/utterance_new.png" alt="pic utterance"></p>
+<p><img src="./assets/utterance_new.png" alt="pic utterance"></p>
 <p>Now that we are understand, let’s train our Wit app to process the user’s response to the app.</p>
 <h2><a class="anchor" aria-hidden="true" id="create-and-training-your-wit-app-to-do-natural-language-processing-nlp"></a><a href="#create-and-training-your-wit-app-to-do-natural-language-processing-nlp" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create and Training your Wit app to do natural language processing (NLP)</h2>
 <p>Wit AI has <strong>two method for training the NLP</strong>.
@@ -148,7 +148,7 @@ we emphasize the API method more than Web Interface method in this tutorial.</p>
 <h3><a class="anchor" aria-hidden="true" id="wit-ai-web-interface"></a><a href="#wit-ai-web-interface" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Wit AI Web Interface</h3>
 <p>We are going to create intents to define what the user's utterance for our wit.AI application will understand. On the dashboard click on intents, click <strong>+Intents</strong> to add a new intents.</p>
 <p align="center">
-<img src="./examples/create_intent_sentiment.gif">
+<img src="./assets/create_intent_sentiment.gif">
 </p>
 <p>How to produce sentiment</p>
 <ol>
@@ -165,7 +165,7 @@ we emphasize the API method more than Web Interface method in this tutorial.</p>
 <li>Annotate a few more examples to get more accurate results!</li>
 </ol>
 <p align="center">
-<img src="./examples/create_sentiment.gif">
+<img src="./assets/create_sentiment.gif">
 </p>
 <p>Update: for English apps, you can use our wit/sentiment built-in! It should already appear in your traits dropdown when you click Add Trait.</p>
 <p>Your <strong>&quot;sentiment&quot;</strong> is a trait, which means that it depends on the utterance as a whole (as opposed to a particular word or sequence of words appearing in the sentence). If it is inferred from a keyword or a specific phrase, use an entity instead. Your &quot;sentiment&quot; trait is trained by and for you. The good news is, it will be completely <strong>customized to your case</strong>. The bad news is, you need to provide several examples for each value :).</p>
@@ -181,14 +181,14 @@ I am so sad   sentiment   <span class="hljs-keyword">negative</span>
 Huhuhuhu   sentiment   <span class="hljs-keyword">negative</span>
 </code></pre>
 <p>Get Your Seed Token</p>
-<p><img src="./examples/seed_token.png" alt="overview"></p>
+<p><img src="./assets/seed_token.png" alt="overview"></p>
 <p>In order to start using the Wit.ai API, we need to start with some identification. Make sure you have signed up for <a href="https://wit.ai">Wit.ai</a> if you haven't already.</p>
 <p>Once you have:</p>
 <ol>
 <li>Go to the <code>Settings</code> page of the <a href="https://wit.ai/home">Wit console</a></li>
 <li>Copy the <code>Server Access Token</code></li>
 </ol>
-<p><img src="./examples/wit_setting.png" alt="overview"></p>
+<p><img src="./assets/wit_setting.png" alt="overview"></p>
 <p>This will be the base token we will use to create other apps. In the code this will be under the variable <code>NEW_ACCESS_TOKEN</code>.</p>
 <p>Next update <code>NEW_ACCESS_TOKEN</code> and <code>APP_ID</code> in <code>shared.js</code> variable to run the  as follows:</p>
 <pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> NEW_ACCESS_TOKEN = <span class="hljs-string">''</span> <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> fill this in </span>
@@ -252,14 +252,14 @@ Huhuhuuhuuuuu   sentiment   <span class="hljs-keyword">negative</span>
 <p>Run the file with:</p>
 <pre><code class="hljs css language-sh">  npm <span class="hljs-built_in">test</span>
 </code></pre>
-<p><img src="./examples/test.png" alt="test results"></p>
+<p><img src="./assets/test.png" alt="test results"></p>
 <h2><a class="anchor" aria-hidden="true" id="integrate-wit-with-your-messenger-bot"></a><a href="#integrate-wit-with-your-messenger-bot" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Integrate Wit with your Messenger Bot</h2>
 <p>When you download the Tutorial from the <a href="https://github.com/imamaris/covidcenter-bot/tree/init-data">init data branch</a>, the app will be capable of doing text and answer with sentiment intent. In this part, we will add how retrieve covid</p>
 <p>Before you begin, you will need to create a few things. Please ensure you have all of the following:</p>
 <ul>
 <li>Facebook Page: A Facebook Page will be used as the identity of your Messenger experience. When people chat with your app, they will see the Page name and the Page profile picture. To create a new Page, visit <a href="https://www.facebook.com/pages/create">https://www.facebook.com/pages/create</a></li>
 </ul>
-<p><img src="./examples/facebook_page.png" alt="facebook page"></p>
+<p><img src="./assets/facebook_page.png" alt="facebook page"></p>
 <ul>
 <li>Facebook Developer Account: Your developer account is required to create new apps, which are the core of any Facebook integration. You can create a new developer account by going to the Facebook Developers website and clicking the 'Get Started' button.</li>
 <li>Facebook App: The Facebook app contains the settings for your Messenger experience, including access tokens. To create a new app, visit your <a href="https://developers.facebook.com/apps">app dashboard</a>.</li>
@@ -272,7 +272,7 @@ Huhuhuuhuuuuu   sentiment   <span class="hljs-keyword">negative</span>
 <li>Click the 'Set Up' button.
 The Messenger Platform will be added to your app, and the Messenger settings console will be displayed.</li>
 </ol>
-<p><img src="./examples/setting_messenger.png" alt="facebook page"></p>
+<p><img src="./assets/setting_messenger.png" alt="facebook page"></p>
 <h3><a class="anchor" aria-hidden="true" id="add-an-webhook-to-your-messenger-bot"></a><a href="#add-an-webhook-to-your-messenger-bot" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add an webhook to your Messenger bot</h3>
 <p>Open the <a href="https://github.com/imamaris/covidcenter-bot/blob/init-data/bot/index.js">Wit.ai Covid Center bot demo</a> int and run</p>
 <p>Get <code>ACCESS_TOKEN</code> and <code>VERIFY_TOKEN</code> from Your App. See <a href="https://developers.facebook.com/docs/messenger-platform/getting-started/webhook-setup/">Webhook Setup</a> for further reference.</p>
@@ -318,7 +318,7 @@ The Messenger Platform will be added to your app, and the Messenger settings con
 <h3><a class="anchor" aria-hidden="true" id="set-your-webhook-and-nlp"></a><a href="#set-your-webhook-and-nlp" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set your webhook and NLP</h3>
 <p>After we get https webhook url, and working Wit.API, we change our facebook app webhook and connect our working wit api.</p>
 <p>Configure the webhook for your app</p>
-<p><img src="./examples/edit_callback_url.png" alt="wit messenger"></p>
+<p><img src="./assets/edit_callback_url.png" alt="wit messenger"></p>
 <ol>
 <li>In the 'Webhooks' section of the Messenger settings console, click the 'Setup Webhooks' button.</li>
 <li>In the 'Callback URL' field, enter the ngrok URL for your webhook. (example: <a href="https://3c37b05d146e.ngrok.io">https://3c37b05d146e.ngrok.io</a>)</li>
@@ -338,11 +338,11 @@ The Messenger Platform will be added to your app, and the Messenger settings con
 </ol>
 <h3><a class="anchor" aria-hidden="true" id="try-your-deployed-chatbot"></a><a href="#try-your-deployed-chatbot" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Try your deployed chatbot</h3>
 <p>Now, after you set your webhook and NLP, you could try your chatbot.</p>
-<p><img src="./examples/neutral_positive.png" width="30%"><img src="./examples/negative.png" width="30%"><img src="./examples/p_negative.png" width="30%"></p>
+<p><img src="./assets/neutral_positive.png" width="30%"><img src="./assets/negative.png" width="30%"><img src="./assets/p_negative.png" width="30%"></p>
 <h3><a class="anchor" aria-hidden="true" id="train-covid_intent-the-wit-api"></a><a href="#train-covid_intent-the-wit-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Train covid_intent the Wit API</h3>
 <p>We are going to create intents to define what the user's utterances for our wit.AI application will understand. On the dashboard click on intents, click <strong>+Intents</strong> to add a new intents.</p>
 <p align="center">
-<img src="./examples/create_intent.gif">
+<img src="./assets/create_intent.gif">
 </p>
 <p>Next, we create training intents, entities and utterances which the user will likely do on the understanding menu. Add a utterance:</p>
 <ol>
@@ -352,16 +352,16 @@ The Messenger Platform will be added to your app, and the Messenger settings con
 <li>Submit your first utterance by click <strong>Train and Validate</strong>. Training will be start a few seconds  - you can check the status training on top right corner.</li>
 </ol>
 <p align="center">
-<img src="./examples/training_new.gif">
+<img src="./assets/training_new.gif">
 </p>
 <p>To find out whether our training has been successful, you can try to re-enter words related to the training we are doing, namely Covid and Jakarta and make sure the confidence reaches above 90% to test the validity of our intentions.</p>
 <p align="center">
-<img src="./examples/test_validitas_new.PNG">
+<img src="./assets/test_validitas_new.PNG">
 </p>
 <pre><code class="hljs"><span class="hljs-variable">$</span> curl <span class="hljs-literal">-XGET</span> <span class="hljs-string">"https://api.wit.ai/utterances?v=<span class="hljs-variable">$APPID</span>&amp;limit=10"</span> <span class="hljs-literal">-H</span> <span class="hljs-string">"Authorization: Bearer <span class="hljs-variable">$YOURTOKEN</span>"</span>
 </code></pre>
 <p align="center">
-<img src="./examples/get_api.PNG">
+<img src="./assets/get_api.PNG">
 </p>
 <p>You may have heard that the most important part of machine learning is data training. At this step, we're only providing our Wit app with a single data point, so let's think about the natural variations the user might respond to and repeat steps # 4 through # 5.</p>
 <p>Now We go to the next step: how to input automatically your utterances with large data training. You can check this step:</p>
@@ -499,7 +499,7 @@ So we give response how user should send text to bot.</p>
 <p>Enjoy, and hack your bot !!! 🤖 📱</p>
 <p>🏆🏆🏆</p>
 <p align="center">
-<img src="./examples/test_messenger_covid.gif" width="40%">
+<img src="./assets/test_messenger_covid.gif" width="40%">
 </p>
 <h3><a class="anchor" aria-hidden="true" id="additional-integrate-with-covid-api"></a><a href="#additional-integrate-with-covid-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>(Additional) Integrate with covid API</h3>
 <p>We would like you to integrate the bot to Covid API. In this tutorial, we use <a href="https://github.com/mathdroid/indonesia-covid-19-api">mathdroid covid API</a>. The steps are :</p>
