@@ -1,0 +1,522 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>doc1 · Covid Center Bot</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Overview"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="doc1 · Covid Center Bot"/><meta property="og:type" content="website"/><meta property="og:url" content="https://covidcenter.github.io/"/><meta property="og:description" content="## Overview"/><meta property="og:image" content="https://covidcenter.github.io/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="https://covidcenter.github.io/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/img/bot.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/js/scrollSpy.js"></script><link rel="stylesheet" href="/css/main.css"/><script src="/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/"><img class="logo" src="/img/bot.jpg" alt="Covid Center Bot"/><h2 class="headerTitleWithLogo">Covid Center Bot</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive siteNavItemActive"><a href="/docs/doc1" target="_self">Docs</a></li><li class=""><a href="/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Covid Bot Tutorial</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Covid Bot Tutorial</h3><ul class=""><li class="navListItem navListItemActive"><a class="navItem" href="/docs/doc1">doc1</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">doc1</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="overview"></a><a href="#overview" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Overview</h2>
+<p align="center">
+  <img src="./assets/test_messenger_covid.gif" width="40%">
+</p>
+<p>In this tutorial, we will be creating an API-based bot that give information covid to your account. The app will be able to process the user's text and respond to the user data about covid that they want. The key things we will explore is how to:</p>
+<ul>
+<li><a href="#design-the-user-interaction">Design the user interaction and Architecture</a></li>
+<li><a href="#understand-terms-in-Wit.AI">Understand Terms in Wit.AI</a></li>
+<li><a href="#create-and-training-your-wit-app-to-do-natural-language-processing-(NLP)">Create and Training your Wit app to do natural language processing (NLP)</a></li>
+<li><a href="#integrate-wit-with-your-messenger-bot">Integrate Wit with your Messenger Bot</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="prerequisites"></a><a href="#prerequisites" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Prerequisites</h2>
+<ul>
+<li>Create a <a href="https://wit.ai/">Wit.ai</a> account</li>
+<li>Clone this repository <a href="https://github.com/imamaris/covidcenter-bot">Wit.ai Covid Center Demo</a> from GitHub</li>
+<li>Create Facebook Page | <a href="https://www.facebook.com/pages/create">Link</a></li>
+<li>Create Facebook App | <a href="https://developers.facebook.com/docs/apps/">Tutorial</a></li>
+<li>Download &amp; Install Ngrok <a href="https://ngrok.com/download">Link</a></li>
+</ul>
+<p>Ngrok is reverse proxy, it allow you deploy at local with random link.</p>
+<h2><a class="anchor" aria-hidden="true" id="design-the-user-interaction"></a><a href="#design-the-user-interaction" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Design the User Interaction</h2>
+<p>When designing applications with interactions, it's important to understand the various ways that a user may interact with your app. Some techniques that can help with modeling the conversation is writing a script or creating a flow diagram. For our covid app, let's write a script to outline it.</p>
+<p><img src="./assets/flow_new.png" alt="alt text" title="Cara Kerja Aplikasi"></p>
+<p>Let's consider the following conversation as the happy path:</p>
+<pre><code class="hljs"><span class="hljs-attribute">User</span>: "Good morning, what is this bot for?"
+
+<span class="http"><span class="hljs-attribute">Wit</span>:  "Sorry, Cocid doesn't understand :(. If you want to know the latest covid info, please type "total covid in your city". Example: total covid in Jakarta"
+
+<span class="http"><span class="hljs-attribute">User</span>: "Total covid in Jakarta"
+
+<span class="sql">Wit:  "total covid in jakarta is 2 case, 1 confirmed, 1 passed.\n
+If you experience the following symptoms, your sense of taste disappears, difficulty breathing, high fever, dry cough, fatigue, immediately <span class="hljs-keyword">do</span> further checks <span class="hljs-keyword">at</span> the referral hospital <span class="hljs-keyword">and</span> <span class="hljs-keyword">after</span> doing the <span class="hljs-keyword">test</span>, <span class="hljs-keyword">if</span> positive it <span class="hljs-keyword">is</span> recommended <span class="hljs-keyword">to</span> <span class="hljs-keyword">do</span> <span class="hljs-keyword">self</span>-quarantine <span class="hljs-keyword">for</span> <span class="hljs-number">14</span> <span class="hljs-keyword">days</span> <span class="hljs-keyword">at</span> your home. \n\n the <span class="hljs-keyword">following</span> article <span class="hljs-keyword">on</span> how <span class="hljs-keyword">to</span> <span class="hljs-keyword">self</span> quarantine
+good <span class="hljs-keyword">and</span> <span class="hljs-literal">true</span> according <span class="hljs-keyword">to</span> WHO (World Heart <span class="hljs-keyword">Organization</span>) :
+
+https://www.who.int/indonesia/news/novel-coronavirus/<span class="hljs-keyword">new</span>-infographics/<span class="hljs-keyword">self</span>-quarantine
+
+This <span class="hljs-keyword">is</span> referral hospitals <span class="hljs-keyword">in</span> Jakarta :\n
+<span class="hljs-number">1.</span> rumah sakit Umum Fatmawati (https://goo.gl/maps/GV6fZRxhEgg2PPjK7)\n
+<span class="hljs-number">2.</span> rumah sakit Jakarta Medical Centre (https://goo.gl/maps/oPnpyw2edFJcg3ha7)\n
+<span class="hljs-number">3.</span> rumah sakit Umum Andhika (https://g.page/rsuandhika?<span class="hljs-keyword">share</span>)<span class="hljs-string">`?"
+
+User: "Alhamdulillah" / (send a location)
+
+Wit: "Great, if you feel good !! keep physical distancing yaaa :D"
+
+</span></span></span></span></code></pre>
+<p>There are many other scenarios to consider as well, but for the tutorial let's just focus on these.</p>
+<h2><a class="anchor" aria-hidden="true" id="understand-terms-in-witai"></a><a href="#understand-terms-in-witai" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Understand Terms in Wit.AI</h2>
+<p>Before we train our Wit app, we should learn about intents, entities, traits, and utterances.
+If you already learn those terms, you can go to <a href="#training-your-wit-app-to-do-natural-language-processing-nlp">Next section</a></p>
+<p>Case Study:
+We want to understand what our end-user wants to perform. For example:</p>
+<ul>
+<li>Ask about the weather</li>
+<li>Book a restaurant</li>
+<li>Open the garage door</li>
+</ul>
+<p>The problem is that there a millions of different ways to express a given intent. For instance, all the following expressions should be mapped to the same intent:</p>
+<p>&quot;What is the weather in Paris?&quot;
+&quot;Give me tomorrow weather in Paris.&quot;
+&quot;Is it sunny or rainy in Paris now?&quot;</p>
+<p><strong>Those expressions are</strong> asking about the <strong>weather intent</strong>. How about entities ?
+<strong>Entities is object that referred in the intent of sentence</strong>.</p>
+<p>&quot;What is the weather in <strong>Paris</strong> ?&quot;
+Paris is <strong>city</strong> where we ask about the weather for.</p>
+<p>&quot;Give me <strong>tomorrow</strong> weather in <strong>Paris</strong>.&quot;
+Tomorrow is <strong>time</strong> when we ask about the weather for.</p>
+<p>&quot;Is it <strong>sunny</strong> or <strong>rainy</strong> in <strong>Paris</strong> <strong>now</strong>?&quot;
+And <strong>sunny</strong> and <strong>rainy</strong> are options what we ask about he weather.</p>
+<p><strong>The entities make machine understand what object that related with the intent</strong>.
+example: &quot;Give me <strong>tomorrow</strong> weather in <strong>Paris</strong>.&quot;</p>
+<p>Intent: Ask about the weather , Entities: City: Paris Time: Tomorrow
+Machine could query to the database in table weather(intent) with paris city and tomorrow queries (entities)</p>
+<p>So what is trait ?
+<strong>Trait is tendency of an intent</strong>.
+We could give an example of this like sentiment on reaction_intent.</p>
+<p>&quot;Sad&quot; (negative)
+&quot;OMG :(&quot; (negative)
+&quot;I can't believe this. I'm crying&quot; (negative)
+&quot;Superb&quot; (positive)</p>
+<p><strong>Utterances is sample data which define a sentence to be categorized to an intent and have entities and traits</strong>.
+This term will be used to train data, for example:</p>
+<p><img src="./assets/utterance.png" alt="pic utterance"></p>
+<p>Now that we are understand, let’s train our Wit app to process the user’s response to the app.</p>
+<h2><a class="anchor" aria-hidden="true" id="create-and-training-your-wit-app-to-do-natural-language-processing-nlp"></a><a href="#create-and-training-your-wit-app-to-do-natural-language-processing-nlp" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create and Training your Wit app to do natural language processing (NLP)</h2>
+<p>Wit AI has <strong>two method for training the NLP</strong>.
+The first is inserting utterances with <strong>web interface</strong>.
+The second one is inserting utterances with <strong>API</strong>.</p>
+<p>We would like to introduce to you all for two methods. But, because data is supossed to be large,
+we emphasize the API method more than Web Interface method in this tutorial.</p>
+<h3><a class="anchor" aria-hidden="true" id="wit-ai-web-interface"></a><a href="#wit-ai-web-interface" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Wit AI Web Interface</h3>
+<p>We are going to create intents to define what the user's utterance for our wit.AI application will understand. On the dashboard click on intents, click <strong>+Intents</strong> to add a new intents.</p>
+<p align="center">
+<img src="./assets/create_intent_sentiment.gif">
+</p>
+<p>How to produce sentiment</p>
+<ol>
+<li>Select Understanding from the left nav and add a sentence you want to do sentiment analysis on.</li>
+</ol>
+<pre><code class="hljs">This <span class="hljs-keyword">is</span> amazing!
+</code></pre>
+<ol start="2">
+<li>Click <strong>Add Trait</strong>. Enter the name of the trait, such as &quot;sentiment&quot;.</li>
+<li>Click the value selector to create a value &quot;positive&quot;.</li>
+<li>Validate your sentence.</li>
+<li>Select <strong>Traits</strong> from the left nav and select the trait you just created.</li>
+<li>In the values section, add more values such as &quot;negative&quot; and &quot;neutral&quot;.</li>
+<li>Annotate a few more examples to get more accurate results!</li>
+</ol>
+<p align="center">
+<img src="./assets/create_sentiment.gif">
+</p>
+<p>Update: for English apps, you can use our wit/sentiment built-in! It should already appear in your traits dropdown when you click Add Trait.</p>
+<p>Your <strong>&quot;sentiment&quot;</strong> is a trait, which means that it depends on the utterance as a whole (as opposed to a particular word or sequence of words appearing in the sentence). If it is inferred from a keyword or a specific phrase, use an entity instead. Your &quot;sentiment&quot; trait is trained by and for you. The good news is, it will be completely <strong>customized to your case</strong>. The bad news is, you need to provide several examples for each value :).</p>
+<p>For more information on this, see the <a href="https://wit.ai/docs/quickstart">Quick Start</a> guide.</p>
+<h3><a class="anchor" aria-hidden="true" id="wit-ai-api"></a><a href="#wit-ai-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Wit AI API</h3>
+<p>Before we implement, we should read <a href="https://wit.ai/docs/http/20200513/">Wit.AI API Documentation</a> first.</p>
+<p>After we understand the API, open the <a href="https://github.com/imamaris/covidcenter-bot/tree/init-data">Wit.ai Covid Center init data script</a></p>
+<p>Update the <code>init-data/sentiment.tsv</code> and add</p>
+<pre><code class="hljs css language-tsv"><span class="hljs-attr">Alhamdulillah</span>    <span class="hljs-string">sentiment   positif</span>
+<span class="hljs-attr">Kabar</span> <span class="hljs-string">buruk   sentiment   negatif</span>
+<span class="hljs-attr">Tidak</span> <span class="hljs-string">menyenangkan   sentiment   negatif</span>
+<span class="hljs-attr">Sedih</span> <span class="hljs-string">akutu   sentiment   negatif</span>
+<span class="hljs-attr">Huhuhuhu</span>   <span class="hljs-string">sentiment   negatif</span>
+</code></pre>
+<p>Get Your Seed Token</p>
+<p><img src="./assets/seed_token.png" alt="overview"></p>
+<p>In order to start using the Wit.ai API, we need to start with some identification. Make sure you have signed up for <a href="https://wit.ai">Wit.ai</a> if you haven't already.</p>
+<p>Once you have:</p>
+<ol>
+<li>Go to the <code>Settings</code> page of the <a href="https://wit.ai/home">Wit console</a></li>
+<li>Copy the <code>Server Access Token</code></li>
+</ol>
+<p>This will be the base token we will use to create other apps. In the code this will be under the variable <code>NEW_ACCESS_TOKEN</code>.</p>
+<p>Next update <code>NEW_ACCESS_TOKEN</code> and <code>APP_ID</code> in <code>shared.js</code> variable to run the  as follows:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> NEW_ACCESS_TOKEN = <span class="hljs-string">''</span> <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> fill this in </span>
+<span class="hljs-keyword">const</span> APP_ID = <span class="hljs-string">''</span>; <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> fill this in</span>
+</code></pre>
+<p>The script is reading data from tsv and hit <a href="https://wit.ai/docs/http/20200513/#post__utterances_link">Utterances API</a>.
+In this script, we use doubletab to enable data with tab and <code>node fetch</code> to hit api.
+We could change utterances constractor and the map for another needs if we want to train another data.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// read data with `\n` splitting</span>
+<span class="hljs-keyword">const</span> data = fs
+  .readFileSync(fileName, <span class="hljs-string">'utf-8'</span>)
+  .split(<span class="hljs-string">'\n'</span>)
+  .map(<span class="hljs-function">(<span class="hljs-params">row</span>) =&gt;</span> row.split(DOUBLETAB))
+
+<span class="hljs-comment">// mapping 3 column into construct function</span>
+<span class="hljs-keyword">const</span> samples = data.map(<span class="hljs-function">(<span class="hljs-params">[text, trait, value]</span>) =&gt;</span> {
+  <span class="hljs-comment">// utterances constractor</span>
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">text</span>: text,
+    <span class="hljs-attr">intent</span>: intentName,
+    <span class="hljs-attr">entities</span>: [],
+    <span class="hljs-attr">traits</span>: [
+      {
+        <span class="hljs-attr">trait</span>: trait,
+        <span class="hljs-attr">value</span>: value,
+      },
+    ],
+  }
+});
+
+<span class="hljs-comment">// hit and log the response</span>
+validateUtterances(samples).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(res))
+
+<span class="hljs-comment">// hit utterances API https://wit.ai/docs/http/20200513/#post__utterances_link</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">validateUtterances</span>(<span class="hljs-params">samples</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(samples))
+  <span class="hljs-keyword">return</span> fetch(<span class="hljs-string">`https://api.wit.ai/utterances?v=<span class="hljs-subst">${APP_ID}</span>`</span>, {
+      <span class="hljs-attr">method</span>: <span class="hljs-string">'POST'</span>,
+      <span class="hljs-attr">headers</span>: {
+        <span class="hljs-attr">Authorization</span>: <span class="hljs-string">`Bearer <span class="hljs-subst">${NEW_ACCESS_TOKEN}</span>`</span>,
+        <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'application/json'</span>,
+      },
+      <span class="hljs-attr">body</span>: <span class="hljs-built_in">JSON</span>.stringify(samples),
+    })
+    .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.json())
+}
+</code></pre>
+<p>After you understand the pre-script
+Run the file with:</p>
+<pre><code class="hljs css language-sh">  node init-data/index.js
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="test-your-witai-app-with-api"></a><a href="#test-your-witai-app-with-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Test your Wit.AI App with API</h3>
+<p>Open the <a href="https://github.com/imamaris/covidcenter-bot/tree/init-data">Wit.ai Covid Center init data script</a></p>
+<p>Update the <code>test.tsv</code> and add</p>
+<pre><code class="hljs css language-tsv"><span class="hljs-meta">Alhamdulillah,</span> <span class="hljs-string">banyak yg sembuh    sentiment   positif</span>
+<span class="hljs-attr">Kabar</span> <span class="hljs-string">jelek   sentiment   negatif</span>
+<span class="hljs-attr">Tidak</span> <span class="hljs-string">senang   sentiment   negatif</span>
+<span class="hljs-attr">Sedih</span> <span class="hljs-string">bgt akutu   sentiment   negatif</span>
+<span class="hljs-attr">Huhuhuuhuuuuu</span>   <span class="hljs-string">sentiment   negatif</span>
+</code></pre>
+<p>Run the file with:</p>
+<pre><code class="hljs css language-sh">  npm <span class="hljs-built_in">test</span>
+</code></pre>
+<p><img src="./assets/test.png" alt="test results"></p>
+<h2><a class="anchor" aria-hidden="true" id="integrate-wit-with-your-messenger-bot"></a><a href="#integrate-wit-with-your-messenger-bot" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Integrate Wit with your Messenger Bot</h2>
+<p>When you download the Tutorial from the <a href="https://github.com/imamaris/covidcenter-bot/tree/init-data">init data branch</a>, the app will be capable of doing text and answer with sentiment intent. In this part, we will add how retrieve covid</p>
+<p>Before you begin, you will need to create a few things. Please ensure you have all of the following:</p>
+<ul>
+<li>Facebook Page: A Facebook Page will be used as the identity of your Messenger experience. When people chat with your app, they will see the Page name and the Page profile picture. To create a new Page, visit <a href="https://www.facebook.com/pages/create">https://www.facebook.com/pages/create</a></li>
+<li>Facebook Developer Account: Your developer account is required to create new apps, which are the core of any Facebook integration. You can create a new developer account by going to the Facebook Developers website and clicking the 'Get Started' button.</li>
+<li>Facebook App: The Facebook app contains the settings for your Messenger experience, including access tokens. To create a new app, visit your <a href="https://developers.facebook.com/apps">app dashboard</a>.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="configure-app"></a><a href="#configure-app" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configure App</h3>
+<p>Add the Messenger Platform to your Facebook app</p>
+<ol>
+<li>In the sidebar of your app settings under 'PRODUCTS', click '+ Add Product'.</li>
+<li>Hover over 'Messenger' to display options.</li>
+<li>Click the 'Set Up' button.
+The Messenger Platform will be added to your app, and the Messenger settings console will be displayed.</li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="add-an-webhook-to-your-messenger-bot"></a><a href="#add-an-webhook-to-your-messenger-bot" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add an webhook to your Messenger bot</h3>
+<p>Open the <a href="https://github.com/imamaris/covidcenter-bot/blob/init-data/bot/index.js">Wit.ai Covid Center bot demo</a> int and run</p>
+<p>Get <code>ACCESS_TOKEN</code> and <code>VERIFY_TOKEN</code> from Your App. See <a href="https://developers.facebook.com/docs/messenger-platform/getting-started/webhook-setup/">Webhook Setup</a> for further reference.</p>
+<p>Next update <code>ACCESS_TOKEN</code> and <code>VERIFY_TOKEN</code> variable to get webhook as follows:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> ACCESS_TOKEN = <span class="hljs-string">''</span> <span class="hljs-comment">// line 11</span>
+<span class="hljs-keyword">let</span> VERIFY_TOKEN = <span class="hljs-string">''</span> <span class="hljs-comment">// line 74</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="test-your-webhook"></a><a href="#test-your-webhook" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Test your webhook</h3>
+<p>Now that you have all the code in place for a basic webhook, it is time to test it by sending a couple sample requests to your webhook running on localhost.</p>
+<ol>
+<li>Run the following on the command line to start your webhook on localhost:</li>
+</ol>
+<pre><code class="hljs css language-sh">node bot/index.js
+</code></pre>
+<ol start="2">
+<li>From a separate command line prompt, test your webhook verification by substituting your verify token into this cURL request:</li>
+</ol>
+<pre><code class="hljs css language-sh">curl -X GET <span class="hljs-string">"localhost:1337/webhook?hub.verify_token=&lt;YOUR_VERIFY_TOKEN&gt;&amp;hub.challenge=CHALLENGE_ACCEPTED&amp;hub.mode=subscribe"</span>
+</code></pre>
+<p>If your webhook verification is working as expected, you should see the following:</p>
+<ul>
+<li><code>WEBHOOK_VERIFIED</code> logged to the command line where your node process is running.</li>
+<li><code>CHALLENGE_ACCEPTED</code> logged to the command line where you sent the cURL request.</li>
+</ul>
+<ol start="3">
+<li>Test your webhook by sending this cURL request:</li>
+</ol>
+<pre><code class="hljs css language-sh">curl -H <span class="hljs-string">"Content-Type: application/json"</span> -X POST <span class="hljs-string">"localhost:1337/webhook"</span> -d <span class="hljs-string">'{"object": "page", "entry": [{"messaging": [{"message": "TEST_MESSAGE"}]}]}'</span>
+</code></pre>
+<p>If your webhook is working as expected, you should see the following:</p>
+<ul>
+<li><code>TEST_MESSAGE</code> logged to the command line where your node process is running.</li>
+<li><code>EVENT RECEIVED</code> logged to the command line where you sent the cURL request.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="deploy-your-webhook"></a><a href="#deploy-your-webhook" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Deploy your webhook</h3>
+<p><a href="https://ngrok.com">Ngrok</a> is reverse proxy, it allow you deploy at local with random link.</p>
+<p>Download &amp; Install Ngrok | <a href="https://ngrok.com/download">Link</a></p>
+<p>Run ngrok:</p>
+<pre><code class="hljs css language-sh">ngrok http 1337
+</code></pre>
+<p><img src="./assets/ngrok.png" alt="ngrok"></p>
+<p>We could access your API from this example is : <a href="https://3c37b05d146e.ngrok.io">https://3c37b05d146e.ngrok.io</a> (this is random url from ngrok, you will generate another link)</p>
+<h3><a class="anchor" aria-hidden="true" id="set-your-webhook-and-nlp"></a><a href="#set-your-webhook-and-nlp" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set your webhook and NLP</h3>
+<p>After we get https webhook url, and working Wit.API, we change our facebook app webhook and connect our working wit api.</p>
+<p>Configure the webhook for your app</p>
+<p><img src="./assets/edit_callback_url.png" alt="wit messenger"></p>
+<ol>
+<li>In the 'Webhooks' section of the Messenger settings console, click the 'Setup Webhooks' button.</li>
+<li>In the 'Callback URL' field, enter the ngrok URL for your webhook. (example: <a href="https://3c37b05d146e.ngrok.io">https://3c37b05d146e.ngrok.io</a>)</li>
+<li>In the 'Verify Token' field, enter the verify token for your webhook. See <a href="https://developers.facebook.com/docs/messenger-platform/getting-started/webhook-setup/">Step 4 of Webhook Setup</a> for further reference.</li>
+<li>Click 'Verify and Save' to confirm you callback URL.</li>
+</ol>
+<p>The Built-in NLP integration with the Page inbox lets you create a Wit.ai app automatically and bootstrap it with past conversations from your Page directly from the Facebook app console settings. These samples that are compiled into your Wit.ai app are based on real conversations your Page has had with your users.</p>
+<p>To try the Built-in NLP Page Inbox feature with your Messenger experience, do the following:</p>
+<p><img src="/assets/link_wit_messenger.png" alt="wit messenger"></p>
+<ol>
+<li>In your app settings, go to Messenger &gt; Settings.</li>
+<li>Enable built-in NLP for your app.</li>
+<li>In the 'Select a Model' dropdown, select 'Custom'.</li>
+<li>Click 'Link to existing Wit App'</li>
+<li>Choose your app</li>
+<li>Insert your Wit Server Access Token <a href="https://github.com/imamaris/covidcenter-bot/blob/master/README.md#wit-ai-api">See how to get Wit Access Token</a></li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="try-your-deployed-chatbot"></a><a href="#try-your-deployed-chatbot" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Try your deployed chatbot</h3>
+<p>Now, after you set your webhook and NLP, you could try your chatbot.</p>
+<p><img src="./assets/neutral_positive.png" width="30%"><img src="./assets/negative.png" width="30%"><img src="./assets/p_negative.png" width="30%"></p>
+<h3><a class="anchor" aria-hidden="true" id="train-covid_intent-the-wit-api"></a><a href="#train-covid_intent-the-wit-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Train covid_intent the Wit API</h3>
+<p>We are going to create intents to define what the user's utterances for our wit.AI application will understand. On the dashboard click on intents, click <strong>+Intents</strong> to add a new intents.</p>
+<p align="center">
+<img src="./assets/create_intent.gif">
+</p>
+<p>Next, we create training intents, entities and utterances which the user will likely do on the understanding menu. Add a utterance:</p>
+<ol>
+<li>Make sure you are in <strong>Train Your App</strong> page by click <strong>Understanding</strong> on top right menu.</li>
+<li>enter <code>jumlah covid di jakarta</code> into <strong>Utterance</strong> text box.</li>
+<li>Label it your entitites into utterence by highlight <code>covid</code> and enter <code>covid_intents</code>, klik <strong>Create Intents</strong> as a entitites dan highlight again <code>jakarta</code> and choice <code>wit/location</code>.</li>
+<li>Submit your first utterance by click <strong>Train and Validate</strong>. Training will be start a few seconds  - you can check the status training on top right corner.</li>
+</ol>
+<p align="center">
+<img src="./assets/training.gif">
+</p>
+<p>To find out whether our training has been successful, you can try to re-enter words related to the training we are doing, namely Covid and Jakarta and make sure the confidence reaches above 90% to test the validity of our intentions.</p>
+<p align="center">
+<img src="./assets/test_validitas.PNG">
+</p>
+<pre><code class="hljs"><span class="hljs-variable">$</span> curl <span class="hljs-literal">-XGET</span> <span class="hljs-string">"https://api.wit.ai/utterances?v=<span class="hljs-variable">$APPID</span>&amp;limit=10"</span> <span class="hljs-literal">-H</span> <span class="hljs-string">"Authorization: Bearer <span class="hljs-variable">$YOURTOKEN</span>"</span>
+</code></pre>
+<p align="center">
+<img src="./assets/get_api.PNG">
+</p>
+<p>You may have heard that the most important part of machine learning is data training. At this step, we're only providing our Wit app with a single data point, so let's think about the natural variations the user might respond to and repeat steps # 4 through # 5.</p>
+<p>Now We go to the next step: how to input automatically your utterances with large data training. You can check this step:</p>
+<ol>
+<li>You can clone our github <a href="https://github.com/imamaris/covidcenter-bot/tree/covid-template/init-data">See how to input Utterance</a></li>
+<li>Now you can see file in <a href="https://github.com/imamaris/covidcenter-bot/tree/covid-template/init-data/datasets">Dataset covid intent.tsv</a>, that is file tsv dataset for training our apps.</li>
+<li>Update and add your own data
+for example, you can see the <code>init-data/datasets/covid_intent.tsv</code></li>
+</ol>
+<p>your_covid_intent.tsv</p>
+<pre><code class="hljs css language-tsv">rumah sakit rujukan di Bogor   location   <span class="hljs-number">23</span>   <span class="hljs-number">27</span>
+gejala covid    covid   <span class="hljs-number">0</span>   <span class="hljs-number">6</span>
+</code></pre>
+<ol start="4">
+<li>Next, we need <a href="https://github.com/imamaris/covidcenter-bot/tree/covid-template/init-data">init data script</a> for training your data. you can check this script:</li>
+</ol>
+<p>init-data/covid_intents.js</p>
+<p>covid_intents.js</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
+<span class="hljs-keyword">const</span> fetch = <span class="hljs-built_in">require</span>(<span class="hljs-string">'node-fetch'</span>);
+<span class="hljs-keyword">const</span> { validateUtterances } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../shared'</span>)
+
+<span class="hljs-keyword">const</span> DOUBLETAB = <span class="hljs-string">'   '</span>;
+<span class="hljs-keyword">const</span> fileName = <span class="hljs-string">'init-data/covid_intent.tsv'</span>
+<span class="hljs-keyword">const</span> intentName = <span class="hljs-string">'covid_intents'</span>
+<span class="hljs-keyword">const</span> entityName = <span class="hljs-string">'covid:covid'</span>
+<span class="hljs-keyword">const</span> data = fs
+  .readFileSync(fileName, <span class="hljs-string">'utf-8'</span>)
+  .split(<span class="hljs-string">'\r\n'</span>)
+  .map(<span class="hljs-function">(<span class="hljs-params">row</span>) =&gt;</span> row.split(DOUBLETAB))
+
+<span class="hljs-keyword">const</span> samples = data.map(<span class="hljs-function">(<span class="hljs-params">[text, value, start, end]</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">text</span>: text,
+    <span class="hljs-attr">intent</span>: intentName,
+    <span class="hljs-attr">entities</span>: [
+        {
+            <span class="hljs-attr">entity</span>: entityName,
+            <span class="hljs-attr">start</span>: start,
+            <span class="hljs-attr">end</span>: end,
+            <span class="hljs-attr">body</span>: value,
+            <span class="hljs-attr">entities</span>: [],
+        }
+    ],
+    <span class="hljs-attr">traits</span>: [],
+  }
+});
+
+validateUtterances(samples).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(res))
+</code></pre>
+<p>we have <strong>text, value, start, and end</strong> that we can check again from our covid_intent.tsv. we can see these terms explanation below:</p>
+<ul>
+<li><p><strong>text</strong> is an utterance how the user is likely to chat on Facebook messenger. In our tsv file, the first word of row is the utterance of user messages. ex: &quot;covid di Jaksel&quot;</p></li>
+<li><p><strong>value</strong> is an entity how our application will learn the word that we highlighted. we are training it within the utterance. In covid_intent.tsv, the second word of row is entity. ex: &quot;covid&quot;</p></li>
+<li><p><strong>start</strong> is the starting index highlighted entity within the text. We can see on third column.</p></li>
+<li><p><strong>end</strong> is the ending index highlighted entity within the text. We can see on last column.</p></li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="add-bot-parser-for-nlp-api"></a><a href="#add-bot-parser-for-nlp-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add bot parser for NLP API</h3>
+<p>The first thing that you have to do is listing your bot behaviours and responses that come from entities that you have.</p>
+<p>We have covid_intents which have two entities.</p>
+<ol>
+<li>Covid entities</li>
+<li>Location entities</li>
+</ol>
+<p>In order to give covid result based on area, the intent should fulfill both entities.
+If one of them is not exist, we must asking user for the missing items.</p>
+<p>But, in order to make this bot simpler, we avoid <a href="https://en.wikipedia.org/wiki/Finite-state_machine">Finite State Machine</a>.
+So we give response how user should send text to bot.</p>
+<p>Therefore, this is code you must add to <code>bot/index.js</code> in your branch <a href="https://github.com/imamaris/covidcenter-bot/tree/covid-template/">covid template</a>.</p>
+<p>bot/index.js</p>
+<pre><code class="hljs css language-js">
+<span class="hljs-comment">// default response</span>
+<span class="hljs-keyword">const</span> DEFAULT_RESPONSE = <span class="hljs-string">'Maaf kak, cocid tidak mengerti :(. Jika ingin mengetahui info terbaru covid silahkan mengetik jumlah covid di kota kakak. contoh : jumlah covid di Jakarta'</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getMessageFromNlp</span>(<span class="hljs-params">nlp</span>) </span>{
+  <span class="hljs-comment">// intents checker</span>
+  <span class="hljs-keyword">if</span> (nlp.intents.length == <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> DEFAULT_RESPONSE
+  }
+
+  <span class="hljs-comment">// switch case the intent.</span>
+  <span class="hljs-keyword">switch</span> (nlp.intents[<span class="hljs-number">0</span>].name) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'covid_intents'</span>:
+      <span class="hljs-keyword">return</span> getCovidResponse(nlp.entities)
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'sentiment_intent'</span>:
+      <span class="hljs-keyword">return</span> getSentimentResponse(nlp.traits.sentiment)
+    <span class="hljs-attr">default</span>:
+      <span class="hljs-keyword">return</span> DEFAULT_RESPONSE
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getCovidResponse</span>(<span class="hljs-params">entities</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(entities[<span class="hljs-string">"covid:covid"</span>]);
+  <span class="hljs-keyword">var</span> city = <span class="hljs-string">''</span>
+  <span class="hljs-keyword">var</span> isCovid = <span class="hljs-literal">false</span>
+  <span class="hljs-comment">// iterate to find covid entities and location entities.</span>
+  entities[<span class="hljs-string">'covid:covid'</span>].forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">c</span>) </span>{
+    <span class="hljs-keyword">if</span> (c.value == <span class="hljs-string">'location'</span>) {
+      city = c.body
+    }
+    <span class="hljs-keyword">if</span> (c.value == <span class="hljs-string">"covid"</span>) {
+      isCovid = <span class="hljs-literal">true</span>
+    }
+  })
+
+  <span class="hljs-keyword">if</span> (isCovid &amp;&amp; city != <span class="hljs-string">''</span>) {
+    <span class="hljs-comment">// covid response when covid and city is available.</span>
+    <span class="hljs-keyword">var</span> totalCase = getRandomNumber(<span class="hljs-number">1</span>,<span class="hljs-number">100</span>)
+    <span class="hljs-keyword">var</span> confirmCase = getRandomNumber(<span class="hljs-number">1</span>, totalCase)
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`jumlah covid di <span class="hljs-subst">${city}</span> adalah <span class="hljs-subst">${totalCase}</span> kasus, <span class="hljs-subst">${confirmCase}</span> konfirmasi, <span class="hljs-subst">${totalCase - confirmCase}</span> meninggal.\n
+jika anda mengalami gejala berikut indra perasa hilang, Susah bernafas, demam tinggi, batuk kering, kelelahan
+segera lakukan pengecekkan lebih lanjut di rumah sakit rujukan dan setelah lakukan test, jika positif
+di sarankan untuk melakukan karantina mandiri selama 14 hari dirumah anda. \n\n berikut artikel cara isolasi mandiri
+yang baik dan benar : https://kumparan.com/kumparannews/cara-karantina-mandiri-protokol-corona-1tCEvhtt8LG
+berikut rumah sakit rujukan di <span class="hljs-subst">${city}</span>:\n
+1. rumah sakit Umum Fatmawati (https://goo.gl/maps/GV6fZRxhEgg2PPjK7)\n
+2. rumah sakit Jakarta Medical Centre (https://goo.gl/maps/oPnpyw2edFJcg3ha7)\n
+3. rumah sakit Umum Andhika (https://g.page/rsuandhika?share)`</span>
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isCovid) {
+    <span class="hljs-comment">// response when location is not provided (ask the location and give how they should give message)</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'Maaf kak, cocid ingin tahu covid di daerah apa ya kak? sebagai contoh kakak bisa mengetik kembali jumlah covid di kota kakak'</span>
+  }
+
+  <span class="hljs-keyword">return</span> DEFAULT_RESPONSE;
+}
+
+<span class="hljs-comment">// random the total case </span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getRandomNumber</span>(<span class="hljs-params">start, end</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * end-start) + start
+}
+</code></pre>
+<p>and change the function <code>getSentimentResponse</code> to <code>getMessageFromNlp</code> on post webhook.</p>
+<pre><code class="hljs css language-js">- text: getSentimentResponse(message.nlp.traits.sentiment),
++ text: getMessageFromNlp(message.nlp),
+</code></pre>
+<p>Now you can try your bot on facebook messenger, repeat step <a href="#deploy-your-webhook">Deploy your webhook </a>from start to finish your setup messenger.</p>
+<p>Enjoy, and hack your bot !!! 🤖 📱</p>
+<p>🏆🏆🏆</p>
+<p align="center">
+<img src="./assets/test_messenger_covid.gif" width="40%">
+</p>
+<h2><a class="anchor" aria-hidden="true" id="review-and-continue-improving-your-wit-app"></a><a href="#review-and-continue-improving-your-wit-app" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Review and continue improving your Wit app</h2>
+<p>As you are testing the app, you might notice that certain utterances are not resolving to the proper intents. To address this, go to <a href="https://wit.ai/">Wit.ai</a> and on the <strong>Understanding</strong> page you should see utterances that have been sent to the API endpoint. You can review each utterance by expanding one and making sure that the entity is properly identified and resolving to the correct intent. If there are utterances not relevant to your use case (invalid utterances), you can mark them as <strong>Out of Scope</strong>.</p>
+<h2><a class="anchor" aria-hidden="true" id="next-steps"></a><a href="#next-steps" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Next Steps</h2>
+<p>For demonstration purposes, we’ve created a very simple covid bot, but you can create a much more engaging and interactive bot. Try sketching out a larger conversation flow with various scenarios and see Wit <a href="https://wit.ai/docs">documentation</a> to learn more about other Wit features e.g. other built-in entities, custom entities, and traits.</p>
+<p>If you want to add features, we have recommendation feature to add:</p>
+<ol>
+<li>Finite State Machine <a href="https://en.wikipedia.org/wiki/Finite-state_machine">link</a>.</li>
+<li>Integrate with <a href="https://github.com/mathdroid/indonesia-covid-19-api">Covid API</a>.</li>
+<li>More data to train.</li>
+<li>Use time entities.</li>
+</ol>
+<p>We look forward to what you will develop! To stay connected, join the <a href="https://www.facebook.com/groups/withackers">Wit Hackers Facebook Group</a> and follow us on <a href="https://twitter.com/fbplatform">Twitter @FBPlatform</a>.</p>
+<h2><a class="anchor" aria-hidden="true" id="related-content"></a><a href="#related-content" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Related Content</h2>
+<ul>
+<li><a href="https://wit.ai/docs">Wit Documentation</a></li>
+<li><a href="https://github.com/wit-ai">Wit GitHub</a></li>
+<li><a href="https://wit.ai/blog">Wit Blog</a></li>
+</ul>
+<h2><a class="anchor" aria-hidden="true" id="contributing"></a><a href="#contributing" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Contributing</h2>
+<p>Just make issue and PR if you want to contribute. we will review your PR.</p>
+<h2><a class="anchor" aria-hidden="true" id="license"></a><a href="#license" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>License</h2>
+<p>Wit.ai Covid Center Bot is licensed, as found in the <a href="LICENSE">LICENSE</a> file.</p>
+</span></div></article></div><div class="docs-prevnext"></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#overview">Overview</a></li><li><a href="#prerequisites">Prerequisites</a></li><li><a href="#design-the-user-interaction">Design the User Interaction</a></li><li><a href="#understand-terms-in-witai">Understand Terms in Wit.AI</a></li><li><a href="#create-and-training-your-wit-app-to-do-natural-language-processing-nlp">Create and Training your Wit app to do natural language processing (NLP)</a><ul class="toc-headings"><li><a href="#wit-ai-web-interface">Wit AI Web Interface</a></li><li><a href="#wit-ai-api">Wit AI API</a></li><li><a href="#test-your-witai-app-with-api">Test your Wit.AI App with API</a></li></ul></li><li><a href="#integrate-wit-with-your-messenger-bot">Integrate Wit with your Messenger Bot</a><ul class="toc-headings"><li><a href="#configure-app">Configure App</a></li><li><a href="#add-an-webhook-to-your-messenger-bot">Add an webhook to your Messenger bot</a></li><li><a href="#test-your-webhook">Test your webhook</a></li><li><a href="#deploy-your-webhook">Deploy your webhook</a></li><li><a href="#set-your-webhook-and-nlp">Set your webhook and NLP</a></li><li><a href="#try-your-deployed-chatbot">Try your deployed chatbot</a></li><li><a href="#train-covid_intent-the-wit-api">Train covid_intent the Wit API</a></li><li><a href="#add-bot-parser-for-nlp-api">Add bot parser for NLP API</a></li></ul></li><li><a href="#review-and-continue-improving-your-wit-app">Review and continue improving your Wit app</a></li><li><a href="#next-steps">Next Steps</a></li><li><a href="#related-content">Related Content</a></li><li><a href="#contributing">Contributing</a></li><li><a href="#license">License</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/" class="nav-home"><img src="/img/bot.ico" alt="Covid Center Bot" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/doc1.html">Getting Started (or other categories)</a><a href="/docs/doc2.html">Guides (or other categories)</a><a href="/docs/doc3.html">API Reference (or other categories)</a></div><div><h5>Community</h5><a href="/users">User Showcase</a><a href="https://stackoverflow.com/questions/tagged/" target="_blank" rel="noreferrer noopener">Stack Overflow</a><a href="https://discordapp.com/">Project Chat</a><a href="https://twitter.com/" target="_blank" rel="noreferrer noopener">Twitter</a></div><div><h5>More</h5><a href="/blog">Blog</a><a href="https://github.com/">GitHub</a><a class="github-button" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Your Name or Your Company Name</section></footer></div></body></html>
