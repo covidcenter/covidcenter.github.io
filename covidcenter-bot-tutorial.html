@@ -457,15 +457,22 @@ So we give response how user should send text to bot.</p>
   <span class="hljs-built_in">console</span>.log(entities[<span class="hljs-string">"covid:covid"</span>]);
   <span class="hljs-keyword">var</span> city = <span class="hljs-string">''</span>
   <span class="hljs-keyword">var</span> isCovid = <span class="hljs-literal">false</span>
+
+  <span class="hljs-comment">// null checker</span>
+  <span class="hljs-keyword">if</span> (entities[<span class="hljs-string">'wit$location:location'</span>] == <span class="hljs-literal">null</span> || entities[<span class="hljs-string">'covid:covid'</span>] == <span class="hljs-literal">null</span>) {
+    <span class="hljs-keyword">return</span> DEFAULT_RESPONSE;
+  }
+
   <span class="hljs-comment">// iterate to find covid entities and location entities.</span>
-  entities[<span class="hljs-string">'covid:covid'</span>].forEach(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">c</span>) </span>{
-    <span class="hljs-keyword">if</span> (c.value == <span class="hljs-string">'location'</span>) {
-      city = c.body
-    }
+  entities[<span class="hljs-string">'wit$location:location'</span>].forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">c</span>) </span>{
+    city = c.body
+  })
+  entities[<span class="hljs-string">'covid:covid'</span>].forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">c</span>) </span>{
     <span class="hljs-keyword">if</span> (c.value == <span class="hljs-string">"covid"</span>) {
       isCovid = <span class="hljs-literal">true</span>
     }
   })
+
 
   <span class="hljs-keyword">if</span> (isCovid &amp;&amp; city != <span class="hljs-string">''</span>) {
     <span class="hljs-comment">// covid response when covid and city is available.</span>
