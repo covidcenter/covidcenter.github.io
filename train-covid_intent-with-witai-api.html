@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Train Covid Intent with Wit.AI API · Covid Center Bot</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Train covid_intent with Wit.AI API"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Train Covid Intent with Wit.AI API · Covid Center Bot"/><meta property="og:type" content="website"/><meta property="og:url" content="http://covidcenter.github.io/docs/"/><meta property="og:description" content="## Train covid_intent with Wit.AI API"/><meta property="og:image" content="http://covidcenter.github.io/docs/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="http://covidcenter.github.io/docs/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/docs/img/bot.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/docs/js/scrollSpy.js"></script><link rel="stylesheet" href="/docs/css/main.css"/><script src="/docs/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/docs/"><img class="logo" src="/docs/img/bot.jpg" alt="Covid Center Bot"/><h2 class="headerTitleWithLogo">Covid Center Bot</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/covidcenter-bot-tutorial" target="_self">Docs</a></li><li class=""><a href="/docs/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Part Contents</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Single Page</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/covidcenter-bot-tutorial">Covid Center Bot Tutorial</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Part Contents</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/introduction">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/create-and-train-witai-application">Create and Train wit.AI Application to do Natural Language Processing (NLP)</a></li><li class="navListItem"><a class="navItem" href="/docs/integrate-witai-with-your-messenger-bot">Integrate Wit.AI with your Messenger Bot</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/train-covid_intent-with-witai-api">Train Covid Intent with Wit.AI API</a></li><li class="navListItem"><a class="navItem" href="/docs/enhance-bot-parser-for-covid-intent">Enhance bot parser for Covid Intent</a></li><li class="navListItem"><a class="navItem" href="/docs/improvement">Improvement</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Train Covid Intent with Wit.AI API</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="train-covid_intent-with-witai-api"></a><a href="#train-covid_intent-with-witai-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Train covid_intent with Wit.AI API</h2>
+<p>We are going to create intents to define what the user's utterances for our wit.AI application will understand. On the dashboard click on intents, click <strong>+Intents</strong> to add a new intents.</p>
+<p align="center">
+<img src="./assets/create_intent.gif">
+</p>
+<p>Next, we create training intents, entities and utterances which the user will likely do on the understanding menu. Add a utterance:</p>
+<ol>
+<li>Make sure you are in <strong>Train Your App</strong> page by click <strong>Understanding</strong> on top right menu.</li>
+<li>enter <code>jumlah covid di jakarta</code> into <strong>Utterance</strong> text box.</li>
+<li>Label it your entitites into utterence by highlight <code>covid</code> and enter <code>covid_intents</code>, klik <strong>Create Intents</strong> as a entitites dan highlight again <code>jakarta</code> and choice <code>wit/location</code>.</li>
+<li>Submit your first utterance by click <strong>Train and Validate</strong>. Training will be start a few seconds  - you can check the status training on top right corner.</li>
+</ol>
+<p align="center">
+<img src="./assets/training_new.gif">
+</p>
+<p>To find out whether our training has been successful, you can try to re-enter words related to the training we are doing, namely Covid and Jakarta and make sure the confidence reaches above 90% to test the validity of our intentions.</p>
+<p align="center">
+<img src="./assets/test_validitas_new.png">
+</p>
+<pre><code class="hljs"><span class="hljs-variable">$</span> curl <span class="hljs-literal">-XGET</span> <span class="hljs-string">"https://api.wit.ai/utterances?v=<span class="hljs-variable">$APPID</span>&amp;limit=10"</span> <span class="hljs-literal">-H</span> <span class="hljs-string">"Authorization: Bearer <span class="hljs-variable">$YOURTOKEN</span>"</span>
+</code></pre>
+<p align="center">
+<img src="./assets/get_api.PNG">
+</p>
+<p>You may have heard that the most important part of machine learning is data training. At this step, we're only providing our Wit app with a single data point, so let's think about the natural variations the user might respond to and repeat steps # 4 through # 5.</p>
+<p>Now We go to the next step: how to input automatically your utterances with large data training. You can check this step:</p>
+<ol>
+<li>You can clone our github <a href="https://github.com/imamaris/covidcenter-bot/tree/covid-template/init-data">See how to input Utterance</a></li>
+<li>Now you can see file in <a href="https://github.com/imamaris/covidcenter-bot/tree/covid-template/init-data/datasets">Dataset covid intent.tsv</a>, that is file tsv dataset for training our apps.</li>
+<li>Update and add your own data
+for example, you can see the <code>init-data/datasets/covid_intent.tsv</code></li>
+</ol>
+<p>your_covid_intent.tsv</p>
+<pre><code class="hljs css language-tsv">rumah sakit rujukan di Bogor   location   <span class="hljs-number">23</span>   <span class="hljs-number">27</span>
+gejala covid    covid   <span class="hljs-number">0</span>   <span class="hljs-number">6</span>
+</code></pre>
+<ol start="4">
+<li>Next, we need <a href="https://github.com/imamaris/covidcenter-bot/tree/covid-template/init-data">init data script</a> for training your data. you can check this script:</li>
+</ol>
+<p>init-data/covid_intents.js</p>
+<p>covid_intents.js</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> fs = <span class="hljs-built_in">require</span>(<span class="hljs-string">'fs'</span>);
+<span class="hljs-keyword">const</span> fetch = <span class="hljs-built_in">require</span>(<span class="hljs-string">'node-fetch'</span>);
+<span class="hljs-keyword">const</span> { validateUtterances } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../shared'</span>)
+
+<span class="hljs-keyword">const</span> DOUBLETAB = <span class="hljs-string">'   '</span>;
+<span class="hljs-keyword">const</span> fileName = <span class="hljs-string">'init-data/covid_intent.tsv'</span>
+<span class="hljs-keyword">const</span> intentName = <span class="hljs-string">'covid_intents'</span>
+<span class="hljs-keyword">const</span> entityName = <span class="hljs-string">'covid:covid'</span>
+<span class="hljs-keyword">const</span> data = fs
+  .readFileSync(fileName, <span class="hljs-string">'utf-8'</span>)
+  .split(<span class="hljs-string">'\r\n'</span>)
+  .map(<span class="hljs-function">(<span class="hljs-params">row</span>) =&gt;</span> row.split(DOUBLETAB))
+
+<span class="hljs-keyword">const</span> samples = data.map(<span class="hljs-function">(<span class="hljs-params">[text, value, start, end]</span>) =&gt;</span> {
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">text</span>: text,
+    <span class="hljs-attr">intent</span>: intentName,
+    <span class="hljs-attr">entities</span>: [
+        {
+            <span class="hljs-attr">entity</span>: entityName,
+            <span class="hljs-attr">start</span>: start,
+            <span class="hljs-attr">end</span>: end,
+            <span class="hljs-attr">body</span>: value,
+            <span class="hljs-attr">entities</span>: [],
+        }
+    ],
+    <span class="hljs-attr">traits</span>: [],
+  }
+});
+
+validateUtterances(samples).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(res))
+</code></pre>
+<p>we have <strong>text, value, start, and end</strong> that we can check again from our covid_intent.tsv. we can see these terms explanation below:</p>
+<ul>
+<li><p><strong>text</strong> is an utterance how the user is likely to chat on Facebook messenger. In our tsv file, the first word of row is the utterance of user messages. ex: &quot;covid di Jaksel&quot;</p></li>
+<li><p><strong>value</strong> is an entity how our application will learn the word that we highlighted. we are training it within the utterance. In covid_intent.tsv, the second word of row is entity. ex: &quot;covid&quot;</p></li>
+<li><p><strong>start</strong> is the starting index highlighted entity within the text. We can see on third column.</p></li>
+<li><p><strong>end</strong> is the ending index highlighted entity within the text. We can see on last column.</p></li>
+</ul>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/integrate-witai-with-your-messenger-bot"><span class="arrow-prev">← </span><span>Integrate Wit.AI with your Messenger Bot</span></a><a class="docs-next button" href="/docs/enhance-bot-parser-for-covid-intent"><span>Enhance bot parser for Covid Intent</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#train-covid_intent-with-witai-api">Train covid_intent with Wit.AI API</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/docs/" class="nav-home"><img src="/docs/img/bot.ico" alt="Covid Center Bot" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/covidcenter-bot-tutorial">Covid Center Bot Tutorial</a><a href="https://github.com/imamaris/covidcenter-bot">Covid Center Bot Tutorial - Github</a></div><div><h5>More</h5><a href="https://github.com/imamaris/covidcenter-bot">GitHub</a><a class="github-button" href="https://github.com/imamaris/covidcenter-bot" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a><div class="social"><a href="https://twitter.com/sukangwurr" class="twitter-follow-button">Follow @sukangwurr</a></div></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/docs/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Covid Center Bot</section></footer></div><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

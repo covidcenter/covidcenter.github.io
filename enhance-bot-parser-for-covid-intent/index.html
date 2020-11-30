@@ -1,0 +1,146 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Enhance bot parser for Covid Intent · Covid Center Bot</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Enhance bot parser for Covid Intent"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Enhance bot parser for Covid Intent · Covid Center Bot"/><meta property="og:type" content="website"/><meta property="og:url" content="http://covidcenter.github.io/docs/"/><meta property="og:description" content="## Enhance bot parser for Covid Intent"/><meta property="og:image" content="http://covidcenter.github.io/docs/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="http://covidcenter.github.io/docs/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/docs/img/bot.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/docs/js/scrollSpy.js"></script><link rel="stylesheet" href="/docs/css/main.css"/><script src="/docs/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/docs/"><img class="logo" src="/docs/img/bot.jpg" alt="Covid Center Bot"/><h2 class="headerTitleWithLogo">Covid Center Bot</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/covidcenter-bot-tutorial" target="_self">Docs</a></li><li class=""><a href="/docs/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Part Contents</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Single Page</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/covidcenter-bot-tutorial">Covid Center Bot Tutorial</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Part Contents</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/introduction">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/create-and-train-witai-application">Create and Train wit.AI Application to do Natural Language Processing (NLP)</a></li><li class="navListItem"><a class="navItem" href="/docs/integrate-witai-with-your-messenger-bot">Integrate Wit.AI with your Messenger Bot</a></li><li class="navListItem"><a class="navItem" href="/docs/train-covid_intent-with-witai-api">Train Covid Intent with Wit.AI API</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/enhance-bot-parser-for-covid-intent">Enhance bot parser for Covid Intent</a></li><li class="navListItem"><a class="navItem" href="/docs/improvement">Improvement</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Enhance bot parser for Covid Intent</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="enhance-bot-parser-for-covid-intent"></a><a href="#enhance-bot-parser-for-covid-intent" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Enhance bot parser for Covid Intent</h2>
+<p>The first thing that you have to do is listing your bot behaviours and responses that come from entities that you have.</p>
+<p>We have covid_intents which have two entities.</p>
+<ol>
+<li>Covid entities</li>
+<li>Location entities</li>
+</ol>
+<p>In order to give covid result based on area, the intent should fulfill both entities.
+If one of them is not exist, we must asking user for the missing items.</p>
+<p>But, in order to make this bot simpler, we avoid <a href="https://en.wikipedia.org/wiki/Finite-state_machine">Finite State Machine</a>.
+So we give response how user should send text to bot.</p>
+<p>Therefore, this is code you must add to <code>bot/index.js</code> in your branch <a href="https://github.com/imamaris/covidcenter-bot/tree/covid-template/">covid template</a>.</p>
+<p>bot/index.js</p>
+<pre><code class="hljs css language-js">
+<span class="hljs-comment">// default response</span>
+<span class="hljs-keyword">const</span> DEFAULT_RESPONSE = <span class="hljs-string">'Sorry, cocid doesnt understand :(. If you want to know the latest covid info, please type "total covid in your city". Example: total covid in Jakarta'</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getMessageFromNlp</span>(<span class="hljs-params">nlp</span>) </span>{
+  <span class="hljs-comment">// intents checker</span>
+  <span class="hljs-keyword">if</span> (nlp.intents.length == <span class="hljs-number">0</span>) {
+    <span class="hljs-keyword">return</span> DEFAULT_RESPONSE
+  }
+
+  <span class="hljs-comment">// switch case the intent.</span>
+  <span class="hljs-keyword">switch</span> (nlp.intents[<span class="hljs-number">0</span>].name) {
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'covid_intents'</span>:
+      <span class="hljs-keyword">return</span> getCovidResponse(nlp.entities)
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'sentiment_intent'</span>:
+      <span class="hljs-keyword">return</span> getSentimentResponse(nlp.traits.sentiment)
+    <span class="hljs-attr">default</span>:
+      <span class="hljs-keyword">return</span> DEFAULT_RESPONSE
+  }
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getCovidResponse</span>(<span class="hljs-params">entities</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(entities[<span class="hljs-string">"covid:covid"</span>]);
+  <span class="hljs-keyword">var</span> city = <span class="hljs-string">''</span>
+  <span class="hljs-keyword">var</span> isCovid = <span class="hljs-literal">false</span>
+
+  <span class="hljs-comment">// null checker</span>
+  <span class="hljs-keyword">if</span> (entities[<span class="hljs-string">'wit$location:location'</span>] == <span class="hljs-literal">null</span> || entities[<span class="hljs-string">'covid:covid'</span>] == <span class="hljs-literal">null</span>) {
+    <span class="hljs-keyword">return</span> DEFAULT_RESPONSE;
+  }
+
+  <span class="hljs-comment">// iterate to find covid entities and location entities.</span>
+  entities[<span class="hljs-string">'wit$location:location'</span>].forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">c</span>) </span>{
+    city = c.body
+  })
+  entities[<span class="hljs-string">'covid:covid'</span>].forEach(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">c</span>) </span>{
+    <span class="hljs-keyword">if</span> (c.value == <span class="hljs-string">"covid"</span>) {
+      isCovid = <span class="hljs-literal">true</span>
+    }
+  })
+
+
+  <span class="hljs-keyword">if</span> (isCovid &amp;&amp; city != <span class="hljs-string">''</span>) {
+    <span class="hljs-comment">// covid response when covid and city is available.</span>
+    <span class="hljs-keyword">var</span> totalCase = getRandomNumber(<span class="hljs-number">1</span>,<span class="hljs-number">100</span>)
+    <span class="hljs-keyword">var</span> confirmCase = getRandomNumber(<span class="hljs-number">1</span>, totalCase)
+    <span class="hljs-keyword">return</span> <span class="hljs-string">`total covid in <span class="hljs-subst">${city}</span> is <span class="hljs-subst">${totalCase}</span> cases, <span class="hljs-subst">${confirmCase}</span> confirmed, <span class="hljs-subst">${totalCase - confirmCase}</span> deaths.\n
+    if you experience the following symptoms, your sense of taste disappears, difficulty breathing, high fever, dry cough, fatigue, immediately do further checks at the referral hospital and after doing the test, if positive it is recommended to do self-quarantine for 14 days at your home. \n\n the following article on how to self quarantine
+    good and true according to WHO (World Heart Organization) : https://www.who.int/indonesia/news/novel-coronavirus/new-infographics/self-quarantine
+    This is referral hospitals in <span class="hljs-subst">${city}</span>:\n
+1. rumah sakit Umum Fatmawati (https://goo.gl/maps/GV6fZRxhEgg2PPjK7)\n
+2. rumah sakit Jakarta Medical Centre (https://goo.gl/maps/oPnpyw2edFJcg3ha7)\n
+3. rumah sakit Umum Andhika (https://g.page/rsuandhika?share)`</span>
+  } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (isCovid) {
+    <span class="hljs-comment">// response when location is not provided (ask the location and give how they should give message)</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">'Sorry, Cocid wants to know what area is Covid? for example, you can retype the number of covid in your city'</span>
+  }
+
+  <span class="hljs-keyword">return</span> DEFAULT_RESPONSE;
+}
+
+<span class="hljs-comment">// random the total case </span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getRandomNumber</span>(<span class="hljs-params">start, end</span>) </span>{
+  <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * end-start) + start
+}
+</code></pre>
+<p>and change the function <code>getSentimentResponse</code> to <code>getMessageFromNlp</code> on post webhook.</p>
+<pre><code class="hljs css language-js">- text: getSentimentResponse(message.nlp.traits.sentiment),
++ text: getMessageFromNlp(message.nlp),
+</code></pre>
+<p>Now you can try your bot on facebook messenger, repeat step <a href="#deploy-your-webhook">Deploy your webhook </a>from start to finish your setup messenger.</p>
+<p>Enjoy, and hack your bot !!! 🤖 📱</p>
+<p>🏆🏆🏆</p>
+<p align="center">
+<img src="./assets/test_messenger_footer.gif" width="40%">
+</p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/train-covid_intent-with-witai-api"><span class="arrow-prev">← </span><span>Train Covid Intent with Wit.AI API</span></a><a class="docs-next button" href="/docs/improvement"><span>Improvement</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#enhance-bot-parser-for-covid-intent">Enhance bot parser for Covid Intent</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/docs/" class="nav-home"><img src="/docs/img/bot.ico" alt="Covid Center Bot" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/covidcenter-bot-tutorial">Covid Center Bot Tutorial</a><a href="https://github.com/imamaris/covidcenter-bot">Covid Center Bot Tutorial - Github</a></div><div><h5>More</h5><a href="https://github.com/imamaris/covidcenter-bot">GitHub</a><a class="github-button" href="https://github.com/imamaris/covidcenter-bot" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a><div class="social"><a href="https://twitter.com/sukangwurr" class="twitter-follow-button">Follow @sukangwurr</a></div></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/docs/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Covid Center Bot</section></footer></div><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

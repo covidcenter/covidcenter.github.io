@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Create and Train wit.AI Application to do Natural Language Processing (NLP) · Covid Center Bot</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Create and Train Wit.AI Application to do Natural Language Processing (NLP)"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Create and Train wit.AI Application to do Natural Language Processing (NLP) · Covid Center Bot"/><meta property="og:type" content="website"/><meta property="og:url" content="http://covidcenter.github.io/docs/"/><meta property="og:description" content="## Create and Train Wit.AI Application to do Natural Language Processing (NLP)"/><meta property="og:image" content="http://covidcenter.github.io/docs/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="http://covidcenter.github.io/docs/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/docs/img/bot.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/docs/js/scrollSpy.js"></script><link rel="stylesheet" href="/docs/css/main.css"/><script src="/docs/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/docs/"><img class="logo" src="/docs/img/bot.jpg" alt="Covid Center Bot"/><h2 class="headerTitleWithLogo">Covid Center Bot</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/covidcenter-bot-tutorial" target="_self">Docs</a></li><li class=""><a href="/docs/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Part Contents</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Single Page</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/covidcenter-bot-tutorial">Covid Center Bot Tutorial</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Part Contents</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/introduction">Introduction</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/create-and-train-witai-application">Create and Train wit.AI Application to do Natural Language Processing (NLP)</a></li><li class="navListItem"><a class="navItem" href="/docs/integrate-witai-with-your-messenger-bot">Integrate Wit.AI with your Messenger Bot</a></li><li class="navListItem"><a class="navItem" href="/docs/train-covid_intent-with-witai-api">Train Covid Intent with Wit.AI API</a></li><li class="navListItem"><a class="navItem" href="/docs/enhance-bot-parser-for-covid-intent">Enhance bot parser for Covid Intent</a></li><li class="navListItem"><a class="navItem" href="/docs/improvement">Improvement</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Create and Train wit.AI Application to do Natural Language Processing (NLP)</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="create-and-train-witai-application-to-do-natural-language-processing-nlp"></a><a href="#create-and-train-witai-application-to-do-natural-language-processing-nlp" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Create and Train Wit.AI Application to do Natural Language Processing (NLP)</h2>
+<p>Wit AI has <strong>two method for training the NLP</strong>.
+The first is inserting utterances with <strong>web interface</strong>.
+The second one is inserting utterances with <strong>API</strong>.</p>
+<p>We would like to introduce to you all for two methods. But, because data is supossed to be large,
+we emphasize the API method more than Web Interface method in this tutorial.</p>
+<h3><a class="anchor" aria-hidden="true" id="wit-ai-web-interface"></a><a href="#wit-ai-web-interface" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Wit AI Web Interface</h3>
+<p>We are going to create intents to define what the user's utterance for our wit.AI application will understand. On the dashboard click on intents, click <strong>+Intents</strong> to add a new intents.</p>
+<p align="center">
+<img src="./assets/create_intent_sentiment.gif">
+</p>
+<p>How to produce sentiment</p>
+<ol>
+<li>Select Understanding from the left nav and add a sentence you want to do sentiment analysis on.</li>
+</ol>
+<pre><code class="hljs">This <span class="hljs-keyword">is</span> amazing!
+</code></pre>
+<ol start="2">
+<li>Click <strong>Add Trait</strong>. Enter the name of the trait, such as &quot;sentiment&quot;.</li>
+<li>Click the value selector to create a value &quot;positive&quot;.</li>
+<li>Validate your sentence.</li>
+<li>Select <strong>Traits</strong> from the left nav and select the trait you just created.</li>
+<li>In the values section, add more values such as &quot;negative&quot; and &quot;neutral&quot;.</li>
+<li>Annotate a few more examples to get more accurate results!</li>
+</ol>
+<p align="center">
+<img src="./assets/create_sentiment.gif">
+</p>
+<p>Update: for English apps, you can use our wit/sentiment built-in! It should already appear in your traits dropdown when you click Add Trait.</p>
+<p>Your <strong>&quot;sentiment&quot;</strong> is a trait, which means that it depends on the utterance as a whole (as opposed to a particular word or sequence of words appearing in the sentence). If it is inferred from a keyword or a specific phrase, use an entity instead. Your &quot;sentiment&quot; trait is trained by and for you. The good news is, it will be completely <strong>customized to your case</strong>. The bad news is, you need to provide several examples for each value :).</p>
+<p>For more information on this, see the <a href="https://wit.ai/docs/quickstart">Quick Start</a> guide.</p>
+<h3><a class="anchor" aria-hidden="true" id="wit-ai-api"></a><a href="#wit-ai-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Wit AI API</h3>
+<p>Before we implement, we should read <a href="https://wit.ai/docs/http/20200513/">Wit.AI API Documentation</a> first.</p>
+<p>After we understand the API, open the <a href="https://github.com/imamaris/covidcenter-bot/tree/init-data">Wit.ai Covid Center init data script</a></p>
+<p>Update the <code>init-data/sentiment.tsv</code> and add</p>
+<pre><code class="hljs css language-tsv">Alhamdulillah    sentiment   <span class="hljs-keyword">positive</span>
+Bad News   sentiment   <span class="hljs-keyword">negative</span>
+<span class="hljs-keyword">Not</span> Good   sentiment   <span class="hljs-keyword">negative</span>
+I am so sad   sentiment   <span class="hljs-keyword">negative</span>
+Huhuhuhu   sentiment   <span class="hljs-keyword">negative</span>
+</code></pre>
+<p>Get Your Seed Token</p>
+<p><img src="./assets/seed_token.png" alt="overview"></p>
+<p>In order to start using the Wit.ai API, we need to start with some identification. Make sure you have signed up for <a href="https://wit.ai">Wit.ai</a> if you haven't already.</p>
+<p>Once you have:</p>
+<ol>
+<li>Go to the <code>Settings</code> page of the <a href="https://wit.ai/home">Wit console</a></li>
+<li>Copy the <code>Server Access Token</code></li>
+</ol>
+<p><img src="./assets/wit_setting.png" alt="overview"></p>
+<p>This will be the base token we will use to create other apps. In the code this will be under the variable <code>NEW_ACCESS_TOKEN</code>.</p>
+<p>Next update <code>NEW_ACCESS_TOKEN</code> and <code>APP_ID</code> in <code>shared.js</code> variable to run the  as follows:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> NEW_ACCESS_TOKEN = <span class="hljs-string">''</span> <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> fill this in </span>
+<span class="hljs-keyword">const</span> APP_ID = <span class="hljs-string">''</span>; <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> fill this in</span>
+</code></pre>
+<p>The script is reading data from tsv and hit <a href="https://wit.ai/docs/http/20200513/#post__utterances_link">Utterances API</a>.
+In this script, we use doubletab to enable data with tab and <code>node fetch</code> to hit api.
+We could change utterances constractor and the map for another needs if we want to train another data.</p>
+<pre><code class="hljs css language-js"><span class="hljs-comment">// read data with `\n` splitting</span>
+<span class="hljs-keyword">const</span> data = fs
+  .readFileSync(fileName, <span class="hljs-string">'utf-8'</span>)
+  .split(<span class="hljs-string">'\n'</span>)
+  .map(<span class="hljs-function">(<span class="hljs-params">row</span>) =&gt;</span> row.split(DOUBLETAB))
+
+<span class="hljs-comment">// mapping 3 column into construct function</span>
+<span class="hljs-keyword">const</span> samples = data.map(<span class="hljs-function">(<span class="hljs-params">[text, trait, value]</span>) =&gt;</span> {
+  <span class="hljs-comment">// utterances constractor</span>
+  <span class="hljs-keyword">return</span> {
+    <span class="hljs-attr">text</span>: text,
+    <span class="hljs-attr">intent</span>: intentName,
+    <span class="hljs-attr">entities</span>: [],
+    <span class="hljs-attr">traits</span>: [
+      {
+        <span class="hljs-attr">trait</span>: trait,
+        <span class="hljs-attr">value</span>: value,
+      },
+    ],
+  }
+});
+
+<span class="hljs-comment">// hit and log the response</span>
+validateUtterances(samples).then(<span class="hljs-function">(<span class="hljs-params">res</span>) =&gt;</span> <span class="hljs-built_in">console</span>.log(res))
+
+<span class="hljs-comment">// hit utterances API https://wit.ai/docs/http/20200513/#post__utterances_link</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">validateUtterances</span>(<span class="hljs-params">samples</span>) </span>{
+  <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">JSON</span>.stringify(samples))
+  <span class="hljs-keyword">return</span> fetch(<span class="hljs-string">`https://api.wit.ai/utterances?v=<span class="hljs-subst">${APP_ID}</span>`</span>, {
+      <span class="hljs-attr">method</span>: <span class="hljs-string">'POST'</span>,
+      <span class="hljs-attr">headers</span>: {
+        <span class="hljs-attr">Authorization</span>: <span class="hljs-string">`Bearer <span class="hljs-subst">${NEW_ACCESS_TOKEN}</span>`</span>,
+        <span class="hljs-string">'Content-Type'</span>: <span class="hljs-string">'application/json'</span>,
+      },
+      <span class="hljs-attr">body</span>: <span class="hljs-built_in">JSON</span>.stringify(samples),
+    })
+    .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.json())
+}
+</code></pre>
+<p>After you understand the pre-script
+Run the file with:</p>
+<pre><code class="hljs css language-sh">  node init-data/index.js
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="test-your-witai-app-with-api"></a><a href="#test-your-witai-app-with-api" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Test your Wit.AI App with API</h3>
+<p>Open the <a href="https://github.com/imamaris/covidcenter-bot/tree/init-data">Wit.ai Covid Center init data script</a></p>
+<p>Update the <code>test.tsv</code> and add</p>
+<pre><code class="hljs css language-tsv">Alhamdulillah, many cases recovered    sentiment   <span class="hljs-keyword">positive</span>
+Bad news   sentiment   <span class="hljs-keyword">negative</span>
+I am <span class="hljs-keyword">not</span> happy   sentiment   <span class="hljs-keyword">negative</span>
+I am so sad   sentiment   <span class="hljs-keyword">negative</span>
+Huhuhuuhuuuuu   sentiment   <span class="hljs-keyword">negative</span>
+</code></pre>
+<p>Run the file with:</p>
+<pre><code class="hljs css language-sh">  npm <span class="hljs-built_in">test</span>
+</code></pre>
+<p><img src="./assets/test.png" alt="test results"></p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/learn-terms-in-wit-ai"><span class="arrow-prev">← </span><span>Previous</span></a><a class="docs-next button" href="/docs/integrate-witai-with-your-messenger-bot"><span>Integrate Wit.AI with your Messenger Bot</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#create-and-train-witai-application-to-do-natural-language-processing-nlp">Create and Train Wit.AI Application to do Natural Language Processing (NLP)</a><ul class="toc-headings"><li><a href="#wit-ai-web-interface">Wit AI Web Interface</a></li><li><a href="#wit-ai-api">Wit AI API</a></li><li><a href="#test-your-witai-app-with-api">Test your Wit.AI App with API</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/docs/" class="nav-home"><img src="/docs/img/bot.ico" alt="Covid Center Bot" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/covidcenter-bot-tutorial">Covid Center Bot Tutorial</a><a href="https://github.com/imamaris/covidcenter-bot">Covid Center Bot Tutorial - Github</a></div><div><h5>More</h5><a href="https://github.com/imamaris/covidcenter-bot">GitHub</a><a class="github-button" href="https://github.com/imamaris/covidcenter-bot" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a><div class="social"><a href="https://twitter.com/sukangwurr" class="twitter-follow-button">Follow @sukangwurr</a></div></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/docs/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Covid Center Bot</section></footer></div><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>

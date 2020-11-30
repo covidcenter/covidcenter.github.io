@@ -1,0 +1,143 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><title>Integrate Wit.AI with your Messenger Bot · Covid Center Bot</title><meta name="viewport" content="width=device-width"/><meta name="generator" content="Docusaurus"/><meta name="description" content="## Integrate Wit.AI with your Messenger Bot"/><meta name="docsearch:language" content="en"/><meta property="og:title" content="Integrate Wit.AI with your Messenger Bot · Covid Center Bot"/><meta property="og:type" content="website"/><meta property="og:url" content="http://covidcenter.github.io/docs/"/><meta property="og:description" content="## Integrate Wit.AI with your Messenger Bot"/><meta property="og:image" content="http://covidcenter.github.io/docs/img/undraw_online.svg"/><meta name="twitter:card" content="summary"/><meta name="twitter:image" content="http://covidcenter.github.io/docs/img/undraw_tweetstorm.svg"/><link rel="shortcut icon" href="/docs/img/bot.ico"/><link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"/><script type="text/javascript" src="https://buttons.github.io/buttons.js"></script><script src="/docs/js/scrollSpy.js"></script><link rel="stylesheet" href="/docs/css/main.css"/><script src="/docs/js/codetabs.js"></script></head><body class="sideNavVisible separateOnPageNav"><div class="fixedHeaderContainer"><div class="headerWrapper wrapper"><header><a href="/docs/"><img class="logo" src="/docs/img/bot.jpg" alt="Covid Center Bot"/><h2 class="headerTitleWithLogo">Covid Center Bot</h2></a><div class="navigationWrapper navigationSlider"><nav class="slidingNav"><ul class="nav-site nav-site-internal"><li class="siteNavGroupActive"><a href="/docs/covidcenter-bot-tutorial" target="_self">Docs</a></li><li class=""><a href="/docs/help" target="_self">Help</a></li></ul></nav></div></header></div></div><div class="navPusher"><div class="docMainWrapper wrapper"><div class="docsNavContainer" id="docsNav"><nav class="toc"><div class="toggleNav"><section class="navWrapper wrapper"><div class="navBreadcrumb wrapper"><div class="navToggle" id="navToggler"><div class="hamburger-menu"><div class="line1"></div><div class="line2"></div><div class="line3"></div></div></div><h2><i>›</i><span>Part Contents</span></h2><div class="tocToggler" id="tocToggler"><i class="icon-toc"></i></div></div><div class="navGroups"><div class="navGroup"><h3 class="navGroupCategoryTitle">Single Page</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/covidcenter-bot-tutorial">Covid Center Bot Tutorial</a></li></ul></div><div class="navGroup"><h3 class="navGroupCategoryTitle">Part Contents</h3><ul class=""><li class="navListItem"><a class="navItem" href="/docs/introduction">Introduction</a></li><li class="navListItem"><a class="navItem" href="/docs/create-and-train-witai-application">Create and Train wit.AI Application to do Natural Language Processing (NLP)</a></li><li class="navListItem navListItemActive"><a class="navItem" href="/docs/integrate-witai-with-your-messenger-bot">Integrate Wit.AI with your Messenger Bot</a></li><li class="navListItem"><a class="navItem" href="/docs/train-covid_intent-with-witai-api">Train Covid Intent with Wit.AI API</a></li><li class="navListItem"><a class="navItem" href="/docs/enhance-bot-parser-for-covid-intent">Enhance bot parser for Covid Intent</a></li><li class="navListItem"><a class="navItem" href="/docs/improvement">Improvement</a></li></ul></div></div></section></div><script>
+            var coll = document.getElementsByClassName('collapsible');
+            var checkActiveCategory = true;
+            for (var i = 0; i < coll.length; i++) {
+              var links = coll[i].nextElementSibling.getElementsByTagName('*');
+              if (checkActiveCategory){
+                for (var j = 0; j < links.length; j++) {
+                  if (links[j].classList.contains('navListItemActive')){
+                    coll[i].nextElementSibling.classList.toggle('hide');
+                    coll[i].childNodes[1].classList.toggle('rotate');
+                    checkActiveCategory = false;
+                    break;
+                  }
+                }
+              }
+
+              coll[i].addEventListener('click', function() {
+                var arrow = this.childNodes[1];
+                arrow.classList.toggle('rotate');
+                var content = this.nextElementSibling;
+                content.classList.toggle('hide');
+              });
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+              createToggler('#navToggler', '#docsNav', 'docsSliderActive');
+              createToggler('#tocToggler', 'body', 'tocActive');
+
+              var headings = document.querySelector('.toc-headings');
+              headings && headings.addEventListener('click', function(event) {
+                var el = event.target;
+                while(el !== headings){
+                  if (el.tagName === 'A') {
+                    document.body.classList.remove('tocActive');
+                    break;
+                  } else{
+                    el = el.parentNode;
+                  }
+                }
+              }, false);
+
+              function createToggler(togglerSelector, targetSelector, className) {
+                var toggler = document.querySelector(togglerSelector);
+                var target = document.querySelector(targetSelector);
+
+                if (!toggler) {
+                  return;
+                }
+
+                toggler.onclick = function(event) {
+                  event.preventDefault();
+
+                  target.classList.toggle(className);
+                };
+              }
+            });
+        </script></nav></div><div class="container mainContainer docsContainer"><div class="wrapper"><div class="post"><header class="postHeader"><h1 id="__docusaurus" class="postHeaderTitle">Integrate Wit.AI with your Messenger Bot</h1></header><article><div><span><h2><a class="anchor" aria-hidden="true" id="integrate-witai-with-your-messenger-bot"></a><a href="#integrate-witai-with-your-messenger-bot" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Integrate Wit.AI with your Messenger Bot</h2>
+<p>When you download the Tutorial from the <a href="https://github.com/imamaris/covidcenter-bot/tree/init-data">init data branch</a>, the app will be capable of doing text and answer with sentiment intent. In this part, we will add how retrieve covid</p>
+<p>Before you begin, you will need to create a few things. Please ensure you have all of the following:</p>
+<ul>
+<li>Facebook Page: A Facebook Page will be used as the identity of your Messenger experience. When people chat with your app, they will see the Page name and the Page profile picture. To create a new Page, visit <a href="https://www.facebook.com/pages/create">https://www.facebook.com/pages/create</a></li>
+</ul>
+<p><img src="./assets/facebook_page.png" alt="facebook page"></p>
+<ul>
+<li>Facebook Developer Account: Your developer account is required to create new apps, which are the core of any Facebook integration. You can create a new developer account by going to the Facebook Developers website and clicking the 'Get Started' button.</li>
+<li>Facebook App: The Facebook app contains the settings for your Messenger experience, including access tokens. To create a new app, visit your <a href="https://developers.facebook.com/apps">app dashboard</a>.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="configure-app"></a><a href="#configure-app" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configure App</h3>
+<p>Add the Messenger Platform to your Facebook app</p>
+<ol>
+<li>In the sidebar of your app settings under 'PRODUCTS', click '+ Add Product'.</li>
+<li>Hover over 'Messenger' to display options.</li>
+<li>Click the 'Set Up' button.
+The Messenger Platform will be added to your app, and the Messenger settings console will be displayed.</li>
+</ol>
+<p><img src="./assets/setting_messenger.png" alt="facebook page"></p>
+<h3><a class="anchor" aria-hidden="true" id="add-an-webhook-to-your-messenger-bot"></a><a href="#add-an-webhook-to-your-messenger-bot" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add an webhook to your Messenger bot</h3>
+<p>Open the <a href="https://github.com/imamaris/covidcenter-bot/blob/init-data/bot/index.js">Wit.ai Covid Center bot demo</a> int and run</p>
+<p>Get <code>ACCESS_TOKEN</code> and <code>VERIFY_TOKEN</code> from Your App. See <a href="https://developers.facebook.com/docs/messenger-platform/getting-started/webhook-setup/">Webhook Setup</a> for further reference.</p>
+<p>Next update <code>ACCESS_TOKEN</code> and <code>VERIFY_TOKEN</code> variable to get webhook as follows:</p>
+<pre><code class="hljs css language-js"><span class="hljs-keyword">const</span> ACCESS_TOKEN = <span class="hljs-string">''</span> <span class="hljs-comment">// line 11</span>
+<span class="hljs-keyword">let</span> VERIFY_TOKEN = <span class="hljs-string">''</span> <span class="hljs-comment">// line 74</span>
+</code></pre>
+<h3><a class="anchor" aria-hidden="true" id="test-your-webhook"></a><a href="#test-your-webhook" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Test your webhook</h3>
+<p>Now that you have all the code in place for a basic webhook, it is time to test it by sending a couple sample requests to your webhook running on localhost.</p>
+<ol>
+<li>Run the following on the command line to start your webhook on localhost:</li>
+</ol>
+<pre><code class="hljs css language-sh">node bot/index.js
+</code></pre>
+<ol start="2">
+<li>From a separate command line prompt, test your webhook verification by substituting your verify token into this cURL request:</li>
+</ol>
+<pre><code class="hljs css language-sh">curl -X GET <span class="hljs-string">"localhost:1337/webhook?hub.verify_token=&lt;YOUR_VERIFY_TOKEN&gt;&amp;hub.challenge=CHALLENGE_ACCEPTED&amp;hub.mode=subscribe"</span>
+</code></pre>
+<p>If your webhook verification is working as expected, you should see the following:</p>
+<ul>
+<li><code>WEBHOOK_VERIFIED</code> logged to the command line where your node process is running.</li>
+<li><code>CHALLENGE_ACCEPTED</code> logged to the command line where you sent the cURL request.</li>
+</ul>
+<ol start="3">
+<li>Test your webhook by sending this cURL request:</li>
+</ol>
+<pre><code class="hljs css language-sh">curl -H <span class="hljs-string">"Content-Type: application/json"</span> -X POST <span class="hljs-string">"localhost:1337/webhook"</span> -d <span class="hljs-string">'{"object": "page", "entry": [{"messaging": [{"message": "TEST_MESSAGE"}]}]}'</span>
+</code></pre>
+<p>If your webhook is working as expected, you should see the following:</p>
+<ul>
+<li><code>TEST_MESSAGE</code> logged to the command line where your node process is running.</li>
+<li><code>EVENT RECEIVED</code> logged to the command line where you sent the cURL request.</li>
+</ul>
+<h3><a class="anchor" aria-hidden="true" id="deploy-your-webhook"></a><a href="#deploy-your-webhook" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Deploy your webhook</h3>
+<p><a href="https://ngrok.com">Ngrok</a> is reverse proxy, it allow you deploy at local with random link.</p>
+<p>Download &amp; Install Ngrok | <a href="https://ngrok.com/download">Link</a></p>
+<p>Run ngrok:</p>
+<pre><code class="hljs css language-sh">ngrok http 1337
+</code></pre>
+<p><img src="./assets/ngrok.png" alt="ngrok"></p>
+<p>We could access your API from this example is : <a href="https://3c37b05d146e.ngrok.io">https://3c37b05d146e.ngrok.io</a> (this is random url from ngrok, you will generate another link)</p>
+<h3><a class="anchor" aria-hidden="true" id="set-your-webhook-and-nlp"></a><a href="#set-your-webhook-and-nlp" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Set your webhook and NLP</h3>
+<p>After we get https webhook url, and working Wit.API, we change our facebook app webhook and connect our working wit api.</p>
+<p>Configure the webhook for your app</p>
+<p><img src="./assets/edit_callback_url.png" alt="wit messenger"></p>
+<ol>
+<li>In the 'Webhooks' section of the Messenger settings console, click the 'Setup Webhooks' button.</li>
+<li>In the 'Callback URL' field, enter the ngrok URL for your webhook. (example: <a href="https://3c37b05d146e.ngrok.io">https://3c37b05d146e.ngrok.io</a>)</li>
+<li>In the 'Verify Token' field, enter the verify token for your webhook. See <a href="https://developers.facebook.com/docs/messenger-platform/getting-started/webhook-setup/">Step 4 of Webhook Setup</a> for further reference.</li>
+<li>Click 'Verify and Save' to confirm you callback URL.</li>
+</ol>
+<p>The Built-in NLP integration with the Page inbox lets you create a Wit.ai app automatically and bootstrap it with past conversations from your Page directly from the Facebook app console settings. These samples that are compiled into your Wit.ai app are based on real conversations your Page has had with your users.</p>
+<p>To try the Built-in NLP Page Inbox feature with your Messenger experience, do the following:</p>
+<p><img src="./assets/link_wit_messenger.png" alt="wit messenger"></p>
+<ol>
+<li>In your app settings, go to Messenger &gt; Settings.</li>
+<li>Enable built-in NLP for your app.</li>
+<li>In the 'Select a Model' dropdown, select 'Custom'.</li>
+<li>Click 'Link to existing Wit App'</li>
+<li>Choose your app</li>
+<li>Insert your Wit Server Access Token <a href="https://github.com/imamaris/covidcenter-bot/blob/master/README.md#wit-ai-api">See how to get Wit Access Token</a></li>
+</ol>
+<h3><a class="anchor" aria-hidden="true" id="try-your-deployed-chatbot"></a><a href="#try-your-deployed-chatbot" aria-hidden="true" class="hash-link"><svg class="hash-link-icon" aria-hidden="true" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Try your deployed chatbot</h3>
+<p>Now, after you set your webhook and NLP, you could try your chatbot.</p>
+<p><img src="./assets/chat_test.png" width="30%"><img src="./assets/negative_new.png" width="30%"><img src="./assets/neutral_positive.png" width="30%"></p>
+</span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/create-and-train-witai-application"><span class="arrow-prev">← </span><span>Create and Train wit.AI Application to do Natural Language Processing (NLP)</span></a><a class="docs-next button" href="/docs/train-covid_intent-with-witai-api"><span>Train Covid Intent with Wit.AI API</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#integrate-witai-with-your-messenger-bot">Integrate Wit.AI with your Messenger Bot</a><ul class="toc-headings"><li><a href="#configure-app">Configure App</a></li><li><a href="#add-an-webhook-to-your-messenger-bot">Add an webhook to your Messenger bot</a></li><li><a href="#test-your-webhook">Test your webhook</a></li><li><a href="#deploy-your-webhook">Deploy your webhook</a></li><li><a href="#set-your-webhook-and-nlp">Set your webhook and NLP</a></li><li><a href="#try-your-deployed-chatbot">Try your deployed chatbot</a></li></ul></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/docs/" class="nav-home"><img src="/docs/img/bot.ico" alt="Covid Center Bot" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/covidcenter-bot-tutorial">Covid Center Bot Tutorial</a><a href="https://github.com/imamaris/covidcenter-bot">Covid Center Bot Tutorial - Github</a></div><div><h5>More</h5><a href="https://github.com/imamaris/covidcenter-bot">GitHub</a><a class="github-button" href="https://github.com/imamaris/covidcenter-bot" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a><div class="social"><a href="https://twitter.com/sukangwurr" class="twitter-follow-button">Follow @sukangwurr</a></div></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/docs/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Covid Center Bot</section></footer></div><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>
