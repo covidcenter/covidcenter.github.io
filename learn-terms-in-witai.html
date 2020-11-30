@@ -64,21 +64,21 @@ We want to understand what our end-user wants to perform. For example:</p>
 <li>Book a restaurant</li>
 <li>Open the garage door</li>
 </ul>
-<p>The problem is that there a millions of different ways to express a given intent. For instance, all the following expressions should be mapped to the same intent:</p>
+<p>There are a millions of different ways to express a given intent. For instance, all the following expressions should be mapped to the same intent:</p>
 <p>&quot;What is the weather in Paris?&quot;
-&quot;Give me tomorrow weather in Paris.&quot;
+&quot;Give me tomorrow's weather in Paris.&quot;
 &quot;Is it sunny or rainy in Paris now?&quot;</p>
 <p><strong>Those expressions are</strong> asking about the <strong>weather intent</strong>. How about entities ?
-<strong>Entities is object that referred in the intent of sentence</strong>.</p>
+<strong>Entities are object that referred in the intent of sentence</strong>.</p>
 <p>&quot;What is the weather in <strong>Paris</strong> ?&quot;
-Paris is <strong>city</strong> where we ask about the weather for.</p>
+Paris is a <strong>city</strong> where we ask about the weather.</p>
 <p>&quot;Give me <strong>tomorrow</strong> weather in <strong>Paris</strong>.&quot;
 Tomorrow is <strong>time</strong> when we ask about the weather for.</p>
 <p>&quot;Is it <strong>sunny</strong> or <strong>rainy</strong> in <strong>Paris</strong> <strong>now</strong>?&quot;
-And <strong>sunny</strong> and <strong>rainy</strong> are options what we ask about he weather.</p>
+And <strong>sunny</strong> and <strong>rainy</strong> are options what we ask about the weather.</p>
 <p><strong>The entities make machine understand what object that related with the intent</strong>.
 example: &quot;Give me <strong>tomorrow</strong> weather in <strong>Paris</strong>.&quot;</p>
-<p>Intent: Ask about the weather , Entities: City: Paris Time: Tomorrow
+<p>Intent: Ask about the weather , Entities: { City: Paris Time: Tomorrow }
 Machine could query to the database in table weather(intent) with paris city and tomorrow queries (entities)</p>
 <p>So what is trait ?
 <strong>Trait is tendency of an intent</strong>.
@@ -87,8 +87,8 @@ We could give an example of this like sentiment on reaction_intent.</p>
 &quot;OMG :(&quot; (negative)
 &quot;I can't believe this. I'm crying&quot; (negative)
 &quot;Superb&quot; (positive)</p>
-<p><strong>Utterances is sample data which define a sentence to be categorized to an intent and have entities and traits</strong>.
+<p><strong>Utterances are sample data which define a sentence to be categorized to an intent and have entities and traits</strong>.
 This term will be used to train data, for example:</p>
-<p><img src="./assets/utterance_new.png" alt="pic utterance"></p>
-<p>Now that we are understand, let’s train our Wit app to process the user’s response to the app.</p>
+<p><img src="./examples/utterance_new.png" alt="pic utterance"></p>
+<p>Now that we understand, let’s train our Wit app to process the user’s response to the app.</p>
 </span></div></article></div><div class="docs-prevnext"><a class="docs-prev button" href="/docs/design-user-interaction"><span class="arrow-prev">← </span><span>Design User Interaction</span></a><a class="docs-next button" href="/docs/create-and-train-witai-application"><span>Create and Train wit.AI Application to do Natural Language Processing (NLP)</span><span class="arrow-next"> →</span></a></div></div></div><nav class="onPageNav"><ul class="toc-headings"><li><a href="#learn-terms-in-witai">Learn Terms in Wit.AI</a></li></ul></nav></div><footer class="nav-footer" id="footer"><section class="sitemap"><a href="/docs/" class="nav-home"><img src="/docs/img/bot.ico" alt="Covid Center Bot" width="66" height="58"/></a><div><h5>Docs</h5><a href="/docs/covidcenter-bot-tutorial">Covid Center Bot Tutorial</a><a href="https://github.com/imamaris/covidcenter-bot">Covid Center Bot Tutorial - Github</a></div><div><h5>More</h5><a href="https://github.com/imamaris/covidcenter-bot">GitHub</a><a class="github-button" href="https://github.com/imamaris/covidcenter-bot" data-icon="octicon-star" data-count-href="/facebook/docusaurus/stargazers" data-show-count="true" data-count-aria-label="# stargazers on GitHub" aria-label="Star this project on GitHub">Star</a><div class="social"><a href="https://twitter.com/sukangwurr" class="twitter-follow-button">Follow @sukangwurr</a></div></div></section><a href="https://opensource.facebook.com/" target="_blank" rel="noreferrer noopener" class="fbOpenSource"><img src="/docs/img/oss_logo.png" alt="Facebook Open Source" width="170" height="45"/></a><section class="copyright">Copyright © 2020 Covid Center Bot</section></footer></div><script>window.twttr=(function(d,s, id){var js,fjs=d.getElementsByTagName(s)[0],t=window.twttr||{};if(d.getElementById(id))return t;js=d.createElement(s);js.id=id;js.src='https://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js, fjs);t._e = [];t.ready = function(f) {t._e.push(f);};return t;}(document, 'script', 'twitter-wjs'));</script></body></html>
